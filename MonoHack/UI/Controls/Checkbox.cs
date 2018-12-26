@@ -72,6 +72,13 @@ namespace MonoHack.UI.Controls
         public event EventHandler Click;
         public event EventHandler Leave;
 
+        public Checkbox()
+        {
+            this.Click += OnClick;
+            this.Hover += OnHover;
+            this.Leave += OnLeave;
+        }
+
         public void Draw()
         {
             if (visible)
@@ -111,10 +118,6 @@ namespace MonoHack.UI.Controls
         {
             prev = curr;
             curr = Mouse.GetState();
-
-            this.Click += OnClick;
-            this.Hover += OnHover;
-            this.Leave += OnLeave;
 
             if (curr.LeftButton == ButtonState.Released && prev.LeftButton == ButtonState.Pressed && controlBounds.Contains(Mouse.GetState().Position))
             {

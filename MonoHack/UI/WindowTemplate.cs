@@ -96,6 +96,7 @@ namespace MonoHack.UI
             Btn1.SpriteBatch = spriteBatch;
             Btn1.ControlBounds = new Rectangle(new Point(250, 250), new Point(150, 50));
             Btn1.Text = "I'm a button!";
+            Btn1.Click += OnClick; // Moved from Update() so we don't do this every frame...
             Btn1.Theme = new UI.Themes.DefaultTheme(Content);
 
             Cbx1 = new UI.Controls.Checkbox();
@@ -146,6 +147,15 @@ namespace MonoHack.UI
             Pbx1.Theme = new UI.Themes.DefaultTheme(Content);
             Pbx1.CurrentColor = Color.CornflowerBlue;
             Pbx1.Image = Content.Load<Texture2D>("UI/Images/MonoHack_512x");
+
+            // Moved from Update().
+            void testFunc(object sender, EventArgs e)
+            {
+                TitleBarDrag = false;
+            }
+
+            this.LMBRelease += testFunc;
+            this.LMBDown += WindowMove;
         }
 
         public void Update(GameTime gameTime)
@@ -161,18 +171,9 @@ namespace MonoHack.UI
             btnMin.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + WindowPanel.ControlBounds.Width - 74, WindowPanel.ControlBounds.Y), new Point(22, 22));
 
             Btn1.Update(gameTime);
-            Btn1.Click += OnClick;
             Cbx1.Update(gameTime);
 
             MouseState mouseState = Mouse.GetState();
-
-            void testFunc(object sender, EventArgs e)
-            {
-                TitleBarDrag = false;
-            }
-
-            this.LMBRelease += testFunc;
-            this.LMBDown += WindowMove;
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && TitleBar.ControlBounds.Contains(mouseState.Position) && !btnClose.ControlBounds.Contains(mouseState.Position) && !btnMax.ControlBounds.Contains(mouseState.Position) && !btnMin.ControlBounds.Contains(mouseState.Position))
             {

@@ -16,8 +16,12 @@ namespace MonoHack
         Texture2D TextCursor;
         Texture2D CurrentCursor;
         Texture2D Pixel;
+        Vector2 MousePosition;
         SpriteFont Font;
         UI.WindowTemplate Win1 = new UI.WindowTemplate();
+
+        // The time elapsed since the last forced garbage collection.
+        double GarbageCollectionTime = 0.0;
 
         public Game1()
         {
@@ -75,6 +79,22 @@ namespace MonoHack
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Has it been 30 seconds since the last garbage collection?
+            if(this.GarbageCollectionTime >= 30.0)
+            {
+                // Force a garbage collection
+                GC.Collect();
+
+                // Reset the timer back to 0.
+                this.GarbageCollectionTime = 0.0;
+            }
+
+            // Increase the garbage collection timer
+            this.GarbageCollectionTime += gameTime.ElapsedGameTime.TotalSeconds;
+
+            // Get the mouse position.
+            this.MousePosition = Mouse.GetState().Position.ToVector2();
+
             // TODO: Add your update logic here
             base.Update(gameTime);
             Win1.Update(gameTime);
@@ -91,11 +111,12 @@ namespace MonoHack
             Win1.Draw(gameTime);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(CurrentCursor, Mouse.GetState().Position.ToVector2());
+
+            // Fix: Explicitly specify the tint color of the sprite, not doing so results in "deprecated" warnings
+            spriteBatch.Draw(CurrentCursor, MousePosition, Color.White);
+
             spriteBatch.End();
             
-            // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
     }
