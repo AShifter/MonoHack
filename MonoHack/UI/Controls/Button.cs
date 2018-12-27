@@ -69,6 +69,14 @@ namespace MonoHack.UI.Controls
         public event EventHandler Click;
         public event EventHandler Leave;
 
+        public Button()
+        {
+            // Don't do this in Update().
+            this.Click += OnClick;
+            this.Hover += OnHover;
+            this.Leave += OnLeave;
+        }
+
         // Draw - Draw the control
         public void Draw()
         {
@@ -96,10 +104,6 @@ namespace MonoHack.UI.Controls
 
         public void Update(GameTime gameTime)
         {
-            this.Click += OnClick;
-            this.Hover += OnHover;
-            this.Leave += OnLeave;
-
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && controlBounds.Contains(Mouse.GetState().Position))
             {
                 Click(this, EventArgs.Empty);

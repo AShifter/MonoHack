@@ -84,10 +84,6 @@ namespace MonoHack.UI.Controls
 
         public void Update(GameTime gameTime)
         {
-            this.Click += OnClick;
-            this.Hover += OnHover;
-            this.Leave += OnLeave;
-
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && controlBounds.Contains(Mouse.GetState().Position))
             {
                 Click(this, EventArgs.Empty);
