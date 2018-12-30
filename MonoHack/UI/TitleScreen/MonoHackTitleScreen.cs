@@ -13,13 +13,20 @@ namespace MonoHack.UI.TitleScreen
     {
         // Local Properties
         private Color backColor = Color.Black;
+
+        // TitleScreen Scene 1 Controls
         private IUIControl backPanel = new UI.Controls.Panel();
         private IUIControl monohackIcon = new UI.Controls.PictureBox();
         private IUIControl monoHackEngineLabel = new UI.Controls.Label();
 
+        // TitleScreen Scene 2 Controls
+        private IUIControl aGameBy = new UI.Controls.Label();
+        private IUIControl ashifter = new UI.Controls.Label();
+        private IUIControl andCommunity = new UI.Controls.Label();
+
         private int totalElapsedFrames = 0;
         private bool animationComplete = true;
-        private int animationCount = 0;
+        private int animationCount = -1;
 
         public Color BackColor
         {
@@ -56,7 +63,7 @@ namespace MonoHack.UI.TitleScreen
             // Preliminary setup
             monoHackEngineLabel.Text = "MonoHack Engine";
             monoHackEngineLabel.Theme = new UI.Themes.DefaultTheme(_content);
-            monoHackEngineLabel.Theme.Font = _content.Load<SpriteFont>("UI/Font/Title");
+            monoHackEngineLabel.Theme.Font = _content.Load<SpriteFont>("UI/Font/H2");
 
             ///
             /// monohackIcon
@@ -78,6 +85,45 @@ namespace MonoHack.UI.TitleScreen
             monoHackEngineLabel.Theme.BorderSize = 0;
             monoHackEngineLabel.Theme.TextColor = Color.White;
             monoHackEngineLabel.Opacity = 0f;
+
+            ///
+            /// aGameBy
+            ///
+            aGameBy.SpriteBatch = _spriteBatch;
+            aGameBy.Text = "a game by";
+            aGameBy.Theme = new UI.Themes.DefaultTheme(_content);
+            aGameBy.Theme.BorderSize = 0;
+            aGameBy.Theme.Font = _content.Load<SpriteFont>("UI/Font/H4");
+            aGameBy.Theme.TextColor = Color.White;
+            aGameBy.Opacity = 0f;
+            aGameBy.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - (int)aGameBy.Theme.Font.MeasureString(aGameBy.Text).X / 2,
+                _graphicsDevice.Viewport.Height / 2 - (int)aGameBy.Theme.Font.MeasureString(aGameBy.Text).Y - 20), new Point(0, 0));
+    
+            ///
+            /// ashifter
+            ///
+            ashifter.SpriteBatch = _spriteBatch;
+            ashifter.Text = "ashifter";
+            ashifter.Theme = new UI.Themes.DefaultTheme(_content);
+            ashifter.Theme.BorderSize = 0;
+            ashifter.Theme.Font = _content.Load<SpriteFont>("UI/Font/H2");
+            ashifter.Theme.TextColor = Color.White;
+            ashifter.Opacity = 0f;
+            ashifter.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - (int)ashifter.Theme.Font.MeasureString(ashifter.Text).X / 2,
+                _graphicsDevice.Viewport.Height / 2 - (int)ashifter.Theme.Font.MeasureString(ashifter.Text).Y / 2 + 20), new Point(0, 0));
+
+            ///
+            /// andCommunity
+            ///
+            andCommunity.SpriteBatch = _spriteBatch;
+            andCommunity.Text = "and the community";
+            andCommunity.Theme = new UI.Themes.DefaultTheme(_content);
+            andCommunity.Theme.BorderSize = 0;
+            andCommunity.Theme.Font = _content.Load<SpriteFont>("UI/Font/H4");
+            andCommunity.Theme.TextColor = Color.White;
+            andCommunity.Opacity = 0f;
+            andCommunity.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - (int)andCommunity.Theme.Font.MeasureString(andCommunity.Text).X / 2,
+                _graphicsDevice.Viewport.Height / 2 + (int)andCommunity.Theme.Font.MeasureString(andCommunity.Text).Y + 25), new Point(0, 0));
         }
 
         public void Initialize()
@@ -103,13 +149,12 @@ namespace MonoHack.UI.TitleScreen
                 if (Math.Round(monohackIcon.Opacity, 2) == 1f)
                 {
                     animationComplete = true;
-                    animationCount++;
+                    //animationCount++;
                 }
             }
+
             if (animationComplete == false && animationCount == 1)
             {
-                //Math.Round(monohackIcon.Opacity) == 1f && 
-
                 monohackIcon.Opacity = monohackIcon.Opacity - 0.05f;
                 monohackIcon.Bounds = new Rectangle(new Point(monohackIcon.Bounds.X, monohackIcon.Bounds.Y - 1), new Point(monohackIcon.Bounds.Width, monohackIcon.Bounds.Height));
 
@@ -119,16 +164,63 @@ namespace MonoHack.UI.TitleScreen
                 if (Math.Round(monohackIcon.Opacity, 2) == 0f)
                 {
                     animationComplete = true;
-                    animationCount++;
+                    //animationCount++;
                 }
             }
 
-            if (totalElapsedFrames == 120)
+            if (aGameBy.Opacity <= 1f && animationComplete == false && animationCount == 2)
+            {
+                aGameBy.Opacity = aGameBy.Opacity + 0.05f;
+                aGameBy.Bounds = new Rectangle(new Point(aGameBy.Bounds.X, aGameBy.Bounds.Y - 1), new Point(aGameBy.Bounds.Width, aGameBy.Bounds.Height));
+
+                ashifter.Opacity = ashifter.Opacity + 0.05f;
+                ashifter.Bounds = new Rectangle(new Point(ashifter.Bounds.X, ashifter.Bounds.Y - 1), new Point(ashifter.Bounds.Width, ashifter.Bounds.Height));
+
+                andCommunity.Opacity = andCommunity.Opacity + 0.05f;
+                andCommunity.Bounds = new Rectangle(new Point(andCommunity.Bounds.X, andCommunity.Bounds.Y - 1), new Point(andCommunity.Bounds.Width, andCommunity.Bounds.Height));
+
+                if (Math.Round(aGameBy.Opacity, 2) == 1f)
+                {
+                    animationComplete = true;
+                    //animationCount++;
+                }
+            }
+
+            if (animationComplete == false && animationCount == 3)
+            {
+                aGameBy.Opacity = aGameBy.Opacity - 0.05f;
+                aGameBy.Bounds = new Rectangle(new Point(aGameBy.Bounds.X, aGameBy.Bounds.Y - 1), new Point(aGameBy.Bounds.Width, aGameBy.Bounds.Height));
+
+                ashifter.Opacity = ashifter.Opacity - 0.05f;
+                ashifter.Bounds = new Rectangle(new Point(ashifter.Bounds.X, ashifter.Bounds.Y - 1), new Point(ashifter.Bounds.Width, ashifter.Bounds.Height));
+
+                andCommunity.Opacity = andCommunity.Opacity - 0.05f;
+                andCommunity.Bounds = new Rectangle(new Point(andCommunity.Bounds.X, andCommunity.Bounds.Y - 1), new Point(andCommunity.Bounds.Width, andCommunity.Bounds.Height));
+
+                if (Math.Round(aGameBy.Opacity, 2) == 0f)
+                {
+                    animationComplete = true;
+                    //animationCount++;
+                }
+            }
+
+            if (backPanel.Opacity <= 1f && animationComplete == false && animationCount == 4)
+            {
+                backPanel.Opacity = backPanel.Opacity - 0.05f;
+
+                if (Math.Round(backPanel.Opacity, 2) == 1f)
+                {
+                    animationComplete = true;
+                    //animationCount++;
+                }
+            }
+
+            if (totalElapsedFrames == 60)
             {
                 animationComplete = false;
                 totalElapsedFrames = 0;
+                animationCount++;
             }
-
         }
 
         public void Draw(GameTime gameTime)
@@ -136,6 +228,14 @@ namespace MonoHack.UI.TitleScreen
             backPanel.Draw(gameTime);
             monohackIcon.Draw(gameTime);
             monoHackEngineLabel.Draw(gameTime);
+
+            //aGameBy.Opacity = 1f;
+            //ashifter.Opacity = 1f;
+            //andCommunity.Opacity = 1f;
+
+            aGameBy.Draw(gameTime);
+            ashifter.Draw(gameTime);
+            andCommunity.Draw(gameTime);
         }
     }
 }
