@@ -39,6 +39,7 @@ namespace MonoHack.UI.Themes
         public SpriteFont Font
         {
             get => font;
+            set => font = value;
         }
 
         public int BorderSize

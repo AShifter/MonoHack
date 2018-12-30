@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3F6549C6-10C6-49FF-88D5-A5B85BB713E0}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MonoHack</RootNamespace>
     <AssemblyName>MonoHack</AssemblyName>
@@ -36,12 +36,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>MonoHack_Transparent.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Applications\IMonoHackApp.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,10 +53,14 @@
     <Compile Include="UI\Controls\Label.cs" />
     <Compile Include="UI\Controls\Panel.cs" />
     <Compile Include="UI\Controls\Textbox.cs" />
+    <Compile Include="UI\ITitleScreen.cs" />
     <Compile Include="UI\IUIControl.cs" />
     <Compile Include="UI\IWindow.cs" />
+    <Compile Include="UI\Screen1.cs" />
+    <Compile Include="Applications\TestApp1\TestApp1.cs" />
     <Compile Include="UI\Themes\DefaultTheme.cs" />
     <Compile Include="UI\IUITheme.cs" />
+    <Compile Include="UI\TitleScreen\MonoHackTitleScreen.cs" />
     <Compile Include="UI\WindowTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,7 +122,10 @@
     </None>
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MonoHack_512x.ico" />
+    <Content Include="MonoHack_Transparent.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

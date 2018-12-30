@@ -11,11 +11,12 @@ namespace MonoHack.UI.Controls
         public SpriteBatch spriteBatch;
         public Rectangle controlBounds;
         public String text;
-        public Boolean active;
-        public Boolean visible = true;
-        public Color currentColor;
-        public Texture2D image;
         public IUITheme theme;
+        public Texture2D image;
+        public Color currentColor;
+        public bool visible = true;
+        public bool active = true;
+        public float opacity = 1f;
 
         SpriteBatch IUIControl.SpriteBatch
         {
@@ -23,7 +24,7 @@ namespace MonoHack.UI.Controls
             set => spriteBatch = value;
         }
 
-        Rectangle IUIControl.ControlBounds
+        Rectangle IUIControl.Bounds
         {
             get => controlBounds;
             set => controlBounds = value;
@@ -33,18 +34,6 @@ namespace MonoHack.UI.Controls
         {
             get => text;
             set => text = value;
-        }
-
-        public Boolean Active
-        {
-            get => active;
-            set => active = value;
-        }
-
-        public Boolean Visible
-        {
-            get => visible;
-            set => visible = value;
         }
 
         public IUITheme Theme
@@ -59,27 +48,42 @@ namespace MonoHack.UI.Controls
             set => image = value;
         }
 
-        public Color CurrentColor
+        public Color Color
         {
             get => currentColor;
             set => currentColor = value;
         }
 
+        public bool Active
+        {
+            get => active;
+            set => active = value;
+        }
+        public float Opacity
+        {
+            get => opacity;
+            set => opacity = value;
+        }
+
+        public int DrawOrder => throw new NotImplementedException();
+
+        public bool Enabled => throw new NotImplementedException();
+
+        public int UpdateOrder => throw new NotImplementedException();
+
+        public bool Visible => visible;
+
         public event EventHandler Hover;
         public event EventHandler Click;
         public event EventHandler Leave;
+        public event EventHandler<EventArgs> DrawOrderChanged;
+        public event EventHandler<EventArgs> VisibleChanged;
+        public event EventHandler<EventArgs> EnabledChanged;
+        public event EventHandler<EventArgs> UpdateOrderChanged;
 
-        // Draw - Draw the control
-        public void Draw()
+        public void Initialize()
         {
-            if (visible)
-            {
-                currentColor = theme.ActiveColor;
-                spriteBatch.Begin();
-                // Draw Text
-                spriteBatch.DrawString(theme.Font, text, new Vector2(controlBounds.X, controlBounds.Y), theme.TextColor);
-                spriteBatch.End();
-            }
+            throw new NotImplementedException();
         }
 
         public void Update(GameTime gameTime)
@@ -95,6 +99,19 @@ namespace MonoHack.UI.Controls
             else
             {
                 Leave(this, EventArgs.Empty);
+            }
+        }
+
+        // Draw - Draw the control
+        public void Draw(GameTime gameTime)
+        {
+            if (visible)
+            {
+                currentColor = theme.ActiveColor;
+                spriteBatch.Begin();
+                // Draw Text
+                spriteBatch.DrawString(theme.Font, text, new Vector2(controlBounds.X, controlBounds.Y), theme.TextColor * opacity);
+                spriteBatch.End();
             }
         }
 

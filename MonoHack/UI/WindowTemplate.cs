@@ -13,32 +13,30 @@ namespace MonoHack.UI
     class WindowTemplate
     {
         IUIControl WindowPanel = new Controls.Panel();
+        IUIControl ContentPanel = new Controls.Panel();
         IUIControl TitleBar = new Controls.Panel();
         IUIControl Title = new Controls.Label();
         IUIControl btnClose = new Controls.Button();
         IUIControl btnMax = new Controls.Button();
         IUIControl btnMin = new Controls.Button();
 
+        Applications.IMonoHackApp app;
+
         bool TitleBarDrag;
         public event EventHandler LMBRelease;
         public event EventHandler LMBDown;
 
-        UI.IUIControl Btn1;
-        UI.IUIControl Cbx1;
-        UI.IUIControl Lbl1;
-        UI.IUIControl Lbl2;
-        UI.IUIControl Lbl3;
-        UI.IUIControl Lbl4;
-        UI.IUIControl Pnl1;
-        UI.IUIControl Pbx1;
+        MouseState mouseState;
 
-        public void SetupWindow(SpriteBatch spriteBatch, ContentManager Content)
+        public WindowTemplate(SpriteBatch spriteBatch, ContentManager Content, Applications.IMonoHackApp App)
         {
+            app = App;
+
             ///
             /// WindowPanel
             ///
             WindowPanel.SpriteBatch = spriteBatch;
-            WindowPanel.ControlBounds = new Rectangle(new Point(900, 50), new Point(300, 326));
+            WindowPanel.Bounds = new Rectangle(new Point(0, 0), new Point(app.AppArea.Width, app.AppArea.Height + 26));
             WindowPanel.Theme = new UI.Themes.DefaultTheme(Content);
             WindowPanel.Theme.BorderSize = 4;
             WindowPanel.Theme.BorderColor = Color.FromNonPremultiplied(64, 64, 64, 255);
@@ -47,16 +45,25 @@ namespace MonoHack.UI
             /// TitleBar
             /// 
             TitleBar.SpriteBatch = spriteBatch;
-            TitleBar.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X, WindowPanel.ControlBounds.Y), new Point(WindowPanel.ControlBounds.Width, 26));
+            TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X, WindowPanel.Bounds.Y), new Point(WindowPanel.Bounds.Width, 26));
             TitleBar.Theme = new UI.Themes.DefaultTheme(Content);
             TitleBar.Theme.ActiveColor = Color.FromNonPremultiplied(64, 64, 64, 255);
             TitleBar.Theme.BorderSize = 0;
 
             ///
+            /// ContentPanel
+            ///
+            ContentPanel.SpriteBatch = spriteBatch;
+            ContentPanel.Bounds = new Rectangle(new Point(0, 0 - TitleBar.Bounds.Height), new Point(WindowPanel.Bounds.Width, WindowPanel.Bounds.Height + TitleBar.Bounds.Height));
+            ContentPanel.Theme = new UI.Themes.DefaultTheme(Content);
+            ContentPanel.Theme.BorderSize = 0;
+            TitleBar.Theme.ActiveColor = Color.FromNonPremultiplied(255, 64, 64, 255);
+
+            ///
             /// Title
             ///
             Title.SpriteBatch = spriteBatch;
-            Title.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + 5, WindowPanel.ControlBounds.Y + 4), new Point(1, 1));
+            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 5, WindowPanel.Bounds.Y + 4), new Point(0, 0));
             Title.Theme = new UI.Themes.DefaultTheme(Content);
             Title.Theme.TextColor = Color.White;
             Title.Text = "MonoHack Window";
@@ -65,7 +72,7 @@ namespace MonoHack.UI
             /// btnClose
             ///
             btnClose.SpriteBatch = spriteBatch;
-            btnClose.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + WindowPanel.ControlBounds.Width - 22, WindowPanel.ControlBounds.Y), new Point(22, 22));
+            btnClose.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 22, WindowPanel.Bounds.Y), new Point(22, 22));
             btnClose.Theme = new UI.Themes.DefaultTheme(Content);
             btnClose.Theme.BorderSize = 0;
             btnClose.Theme.ActiveColor = Color.Black;
@@ -75,7 +82,7 @@ namespace MonoHack.UI
             /// btnMax
             ///
             btnMax.SpriteBatch = spriteBatch;
-            btnMax.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + WindowPanel.ControlBounds.Width - 48, WindowPanel.ControlBounds.Y), new Point(22, 22));
+            btnMax.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 48, WindowPanel.Bounds.Y), new Point(22, 22));
             btnMax.Theme = new UI.Themes.DefaultTheme(Content);
             btnMax.Theme.BorderSize = 0;
             btnMax.Theme.ActiveColor = Color.Black;
@@ -85,77 +92,28 @@ namespace MonoHack.UI
             /// btnMin
             ///
             btnMin.SpriteBatch = spriteBatch;
-            btnMin.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + WindowPanel.ControlBounds.Width - 74, WindowPanel.ControlBounds.Y), new Point(22, 22));
+            btnMin.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 74, WindowPanel.Bounds.Y), new Point(22, 22));
             btnMin.Theme = new UI.Themes.DefaultTheme(Content);
             btnMin.Theme.BorderSize = 0;
             btnMin.Theme.ActiveColor = Color.Black;
             btnMin.Text = "";
 
-            Btn1 = new UI.Controls.Button();
+            this.LMBRelease += TitleMouseUp;
+            this.LMBDown += TitleMouseDown;
+        }
 
-            Btn1.SpriteBatch = spriteBatch;
-            Btn1.ControlBounds = new Rectangle(new Point(250, 250), new Point(150, 50));
-            Btn1.Text = "I'm a button!";
-            Btn1.Click += OnClick; // Moved from Update() so we don't do this every frame...
-            Btn1.Theme = new UI.Themes.DefaultTheme(Content);
+        void TitleMouseDown(object sender, EventArgs e)
+        {
+            TitleBarDrag = true;
+            Point MouseLoc = Mouse.GetState().Position;
+            WindowPanel.Bounds = new Rectangle(new Point(MouseLoc.X - 50, MouseLoc.Y - 10), WindowPanel.Bounds.Size);
+            TitleBar.Bounds = new Rectangle(new Point(MouseLoc.X - 50, MouseLoc.Y - 10), TitleBar.Bounds.Size);
+            Title.Bounds = new Rectangle(new Point(MouseLoc.X - 45, MouseLoc.Y - 6), btnClose.Bounds.Size);
+        }
 
-            Cbx1 = new UI.Controls.Checkbox();
-
-            Cbx1.SpriteBatch = spriteBatch;
-            Cbx1.ControlBounds = new Rectangle(new Point(50, 50), new Point(14, 14));
-            Cbx1.Text = "This is a Checkbox!";
-            Cbx1.Theme = new UI.Themes.DefaultTheme(Content);
-
-            Lbl1 = new UI.Controls.Label();
-
-            Lbl1.SpriteBatch = spriteBatch;
-            Lbl1.ControlBounds = new Rectangle(new Point(500, 500), new Point(1, 1));
-            Lbl1.Text = "Labels! They're typically used on filing cabinets.\nThis one happens to be placed right under a Panel.";
-            Lbl1.Theme = new UI.Themes.DefaultTheme(Content);
-
-            Lbl2 = new UI.Controls.Label();
-
-            Lbl2.SpriteBatch = spriteBatch;
-            Lbl2.ControlBounds = new Rectangle(new Point(100, 610), new Point(1, 1));
-            Lbl2.Text = "A Picturebox!";
-            Lbl2.Theme = new UI.Themes.DefaultTheme(Content);
-
-            Lbl3 = new UI.Controls.Label();
-
-            Lbl3.SpriteBatch = spriteBatch;
-            Lbl3.ControlBounds = new Rectangle(new Point(50, 70), new Point(1, 1));
-            Lbl3.Theme = new UI.Themes.DefaultTheme(Content);
-
-            Lbl4 = new UI.Controls.Label();
-
-            Lbl4.SpriteBatch = spriteBatch;
-            Lbl4.ControlBounds = new Rectangle(new Point(250, 310), new Point(1, 1));
-            Lbl4.Text = "Clicked!";
-            Lbl4.Theme = new UI.Themes.DefaultTheme(Content);
-            Lbl4.Visible = false;
-
-            Pnl1 = new UI.Controls.Panel();
-
-            Pnl1.SpriteBatch = spriteBatch;
-            Pnl1.ControlBounds = new Rectangle(new Point(550, 180), new Point(300, 300));
-            Pnl1.Theme = new UI.Themes.DefaultTheme(Content);
-
-            Pbx1 = new UI.Controls.PictureBox();
-
-            Pbx1.SpriteBatch = spriteBatch;
-            Pbx1.ControlBounds = new Rectangle(new Point(100, 500), new Point(100, 100));
-            Pbx1.Theme = new UI.Themes.DefaultTheme(Content);
-            Pbx1.CurrentColor = Color.CornflowerBlue;
-            Pbx1.Image = Content.Load<Texture2D>("UI/Images/MonoHack_512x");
-
-            // Moved from Update().
-            void testFunc(object sender, EventArgs e)
-            {
-                TitleBarDrag = false;
-            }
-
-            this.LMBRelease += testFunc;
-            this.LMBDown += WindowMove;
+        void TitleMouseUp(object sender, EventArgs e)
+        {
+            TitleBarDrag = false;
         }
 
         public void Update(GameTime gameTime)
@@ -164,18 +122,17 @@ namespace MonoHack.UI
             btnMax.Update(gameTime);
             btnMin.Update(gameTime);
 
-            Title.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + 5, WindowPanel.ControlBounds.Y + 4), new Point(1, 1));
-            TitleBar.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X, WindowPanel.ControlBounds.Y), new Point(WindowPanel.ControlBounds.Width, 26));
-            btnClose.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + WindowPanel.ControlBounds.Width - 22, WindowPanel.ControlBounds.Y), new Point(22, 22));
-            btnMax.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + WindowPanel.ControlBounds.Width - 48, WindowPanel.ControlBounds.Y), new Point(22, 22));
-            btnMin.ControlBounds = new Rectangle(new Point(WindowPanel.ControlBounds.X + WindowPanel.ControlBounds.Width - 74, WindowPanel.ControlBounds.Y), new Point(22, 22));
+            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 5, WindowPanel.Bounds.Y + 4), new Point(1, 1));
+            TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X, WindowPanel.Bounds.Y), new Point(WindowPanel.Bounds.Width, 26));
+            btnClose.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 22, WindowPanel.Bounds.Y), new Point(22, 22));
+            btnMax.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 48, WindowPanel.Bounds.Y), new Point(22, 22));
+            btnMin.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 74, WindowPanel.Bounds.Y), new Point(22, 22));
 
-            Btn1.Update(gameTime);
-            Cbx1.Update(gameTime);
+            app.AppArea = new Rectangle(WindowPanel.Bounds.Location, app.AppArea.Size);
 
-            MouseState mouseState = Mouse.GetState();
+             mouseState = Mouse.GetState();
 
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && TitleBar.ControlBounds.Contains(mouseState.Position) && !btnClose.ControlBounds.Contains(mouseState.Position) && !btnMax.ControlBounds.Contains(mouseState.Position) && !btnMin.ControlBounds.Contains(mouseState.Position))
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && TitleBar.Bounds.Contains(mouseState.Position) && !btnClose.Bounds.Contains(mouseState.Position) && !btnMax.Bounds.Contains(mouseState.Position) && !btnMin.Bounds.Contains(mouseState.Position))
             {
                 LMBDown(this, EventArgs.Empty);
             }
@@ -188,49 +145,17 @@ namespace MonoHack.UI
             {
                 LMBRelease(this, EventArgs.Empty);
             }
-
-            if (Cbx1.Active == true)
-            {
-                Lbl3.Text = "It's currently Checked.";
-            }
-            else
-            {
-                Lbl3.Text = "It's currently Unchecked.";
-            }
-        }
-
-        public void WindowMove(object sender, EventArgs e)
-        {
-            TitleBarDrag = true;
-            Point MouseLoc = Mouse.GetState().Position;
-            WindowPanel.ControlBounds = new Rectangle(new Point(MouseLoc.X - 50, MouseLoc.Y - 10), WindowPanel.ControlBounds.Size);
-            TitleBar.ControlBounds = new Rectangle(new Point(MouseLoc.X - 50, MouseLoc.Y - 10), TitleBar.ControlBounds.Size);
-            Title.ControlBounds = new Rectangle(new Point(MouseLoc.X - 45, MouseLoc.Y - 6), btnClose.ControlBounds.Size);
         }
 
         public void Draw(GameTime gameTime)
         {
-            Btn1.Draw();
-            Cbx1.Draw();
-            Lbl1.Draw();
-            Lbl2.Draw();
-            Lbl3.Draw();
-            Lbl4.Draw();
-            Pnl1.Draw();
-            Pbx1.Draw();
-
-            WindowPanel.Draw();
-            TitleBar.Draw();
-            Title.Draw();
-            btnClose.Draw();
-            btnMax.Draw();
-            btnMin.Draw();
+            WindowPanel.Draw(gameTime);
+            TitleBar.Draw(gameTime);
+            Title.Draw(gameTime);
+            btnClose.Draw(gameTime);
+            btnMax.Draw(gameTime);
+            btnMin.Draw(gameTime);
+            app.Draw(gameTime);
         }
-
-        public void OnClick(object sender, EventArgs e)
-        {
-            Lbl4.Visible = true;
-        }
-
     }
 }

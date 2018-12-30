@@ -9,7 +9,7 @@ namespace MonoHack.UI
         Texture2D BaseTexture { get; }
 
         // SpriteFont font - Font used for this theme.
-        SpriteFont Font { get; }
+        SpriteFont Font { get; set; }
 
         // int borderSize - Thickness of the border found around UI elements.
         int BorderSize { get; set;  }

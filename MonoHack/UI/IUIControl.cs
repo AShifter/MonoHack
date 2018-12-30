@@ -1,18 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace MonoHack.UI
 {
-    public interface IUIControl
+    public interface IUIControl : IGameComponent, IDrawable, IUpdateable
     {
         // functions
         void OnClick(object sender, EventArgs e);
         void OnHover(object sender, EventArgs e);
         void OnLeave(object sender, EventArgs e);
         void Update(GameTime gameTime);
-        void Draw();
+        void Draw(GameTime gameTime);
 
         // events
         event EventHandler Hover;
@@ -21,12 +20,12 @@ namespace MonoHack.UI
 
         // properties
         SpriteBatch SpriteBatch { get; set; }
-        Rectangle ControlBounds { get; set; }
+        Rectangle Bounds { get; set; }
         String Text { get; set; }
-        Boolean Active { get; set; }
-        Boolean Visible { get; set; }
         Texture2D Image { get; set; }
-        Color CurrentColor { get; set; }
+        Color Color { get; set; }
+        bool Active { get; set; }
+        float Opacity { get; set; }
         IUITheme Theme { get; set; }
     }
 }

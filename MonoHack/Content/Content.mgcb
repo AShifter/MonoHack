@@ -20,6 +20,13 @@
 /processorParam:TextureFormat=Compressed
 /build:UI/Font/Main.spritefont
 
+#begin UI/Font/Title.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:UI/Font/Title.spritefont
+
 #begin UI/Images/Cursor/DefaultCursor.png
 /importer:TextureImporter
 /processor:TextureProcessor
