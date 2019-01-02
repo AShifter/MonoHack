@@ -5,12 +5,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoHack.UI.Controls
 {
-    class Checkbox : IUIControl
+    class Checkbox : Control
     {
         // Local Control Properties
         public SpriteBatch spriteBatch;
         public Rectangle controlBounds;
         public String text;
+        public SpriteFont font;
         public IUITheme theme;
         public Texture2D image;
         public Color currentColor;
@@ -21,48 +22,55 @@ namespace MonoHack.UI.Controls
         public MouseState prev;
         public MouseState curr = Mouse.GetState();
 
-        SpriteBatch IUIControl.SpriteBatch
+        public override SpriteBatch SpriteBatch
         {
             get => spriteBatch;
             set => spriteBatch = value;
         }
 
-        Rectangle IUIControl.Bounds
+        public override Rectangle Bounds
         {
             get => controlBounds;
             set => controlBounds = value;
         }
 
-        String IUIControl.Text
+        public override String Text
         {
             get => text;
             set => text = value;
         }
 
-        public IUITheme Theme
+        public override SpriteFont Font
+        {
+            get => font;
+            set => font = value;
+        }
+
+        public override IUITheme Theme
         {
             get => theme;
             set => theme = value;
         }
 
-        public Texture2D Image
+        public override Texture2D Image
         {
             get => image;
             set => image = value;
         }
 
-        public Color Color
+        public override Color Color
         {
             get => currentColor;
             set => currentColor = value;
         }
 
-        public bool Active
+        public override bool Active
         {
             get => active;
             set => active = value;
         }
-        public float Opacity
+
+        public override float Opacity
         {
             get => opacity;
             set => opacity = value;
@@ -76,9 +84,9 @@ namespace MonoHack.UI.Controls
 
         public bool Visible => visible;
 
-        public event EventHandler Hover;
-        public event EventHandler Click;
-        public event EventHandler Leave;
+        public override event EventHandler OnClick;
+        public override event EventHandler OnHover;
+        public override event EventHandler OnLeave;
         public event EventHandler<EventArgs> DrawOrderChanged;
         public event EventHandler<EventArgs> VisibleChanged;
         public event EventHandler<EventArgs> EnabledChanged;
@@ -86,17 +94,17 @@ namespace MonoHack.UI.Controls
 
         public Checkbox()
         {
-            this.Click += OnClick;
-            this.Hover += OnHover;
-            this.Leave += OnLeave;
+            this.OnClick += Click;
+            this.OnHover += Hover;
+            this.OnLeave += Leave;
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             prev = curr;
             curr = Mouse.GetState();
@@ -104,19 +112,19 @@ namespace MonoHack.UI.Controls
             if (curr.LeftButton == ButtonState.Released && prev.LeftButton == ButtonState.Pressed && controlBounds.Contains(Mouse.GetState().Position))
             {
                 prev = Mouse.GetState();
-                Click(this, EventArgs.Empty);
+                OnClick(this, EventArgs.Empty);
             }
             else if (controlBounds.Contains(Mouse.GetState().Position))
             {
-                Hover(this, EventArgs.Empty);
+                OnHover(this, EventArgs.Empty);
             }
             else
             {
-                Leave(this, EventArgs.Empty);
+                OnLeave(this, EventArgs.Empty);
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             if (visible)
             {
@@ -136,7 +144,7 @@ namespace MonoHack.UI.Controls
                 {
                     spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
                         (controlBounds.X + controlBounds.Width / 2) - (controlBounds.Width * 3 / 4) / 2,
-                        (controlBounds.X + controlBounds.Width / 2) - (controlBounds.Width * 3 / 4) / 2),
+                        (controlBounds.Y + controlBounds.Width / 2) - (controlBounds.Width * 3 / 4) / 2),
                         new Point(
                         controlBounds.Width * 3 / 4,
                         controlBounds.Height * 3 / 4)),
@@ -152,7 +160,7 @@ namespace MonoHack.UI.Controls
         }
 
         // OnClick - Attached to Click event
-        public void OnClick(object sender, EventArgs e)
+        public void Click(object sender, EventArgs e)
         {
             if (Active)
             {
@@ -166,13 +174,13 @@ namespace MonoHack.UI.Controls
         }
 
         // OnHover - Attached to Hover event
-        public void OnHover(object sender, EventArgs e)
+        public void Hover(object sender, EventArgs e)
         {
             currentColor = theme.HoverColor;
         }
 
         // OnLeave - Attached to Leave event
-        public void OnLeave(object sender, EventArgs e)
+        public void Leave(object sender, EventArgs e)
         {
             currentColor = theme.ActiveColor;
         }

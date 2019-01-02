@@ -17,7 +17,7 @@ namespace MonoHack.UI.Themes
         Color borderColor;
         Color textColor;
 
-        public DefaultTheme(ContentManager content)
+        public DefaultTheme(ContentManager content, SpriteBatch spriteBatch)
         {
             baseTexture = content.Load<Texture2D>("UI/Images/Pixel");
             font = content.Load<SpriteFont>("UI/Font/Main");

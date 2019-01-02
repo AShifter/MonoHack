@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,17 +8,21 @@ namespace MonoHack.UI.TitleScreen
     class MonoHackTitleScreen : ITitleScreen
     {
         // Local Properties
+        private UI.IUITheme mainTheme;
         private Color backColor = Color.Black;
+        private SpriteBatch spriteBatch;
+        private ContentManager content;
+        private GraphicsDevice graphicsDevice;
 
         // TitleScreen Scene 1 Controls
-        private IUIControl backPanel = new UI.Controls.Panel();
-        private IUIControl monohackIcon = new UI.Controls.PictureBox();
-        private IUIControl monoHackEngineLabel = new UI.Controls.Label();
+        private Control backPanel = new UI.Controls.Panel();
+        private Control monohackIcon = new UI.Controls.PictureBox();
+        private Control monoHackEngineLabel = new UI.Controls.Label();
 
         // TitleScreen Scene 2 Controls
-        private IUIControl aGameBy = new UI.Controls.Label();
-        private IUIControl ashifter = new UI.Controls.Label();
-        private IUIControl andCommunity = new UI.Controls.Label();
+        private Control aGameBy = new UI.Controls.Label();
+        private Control ashifter = new UI.Controls.Label();
+        private Control andCommunity = new UI.Controls.Label();
 
         private int totalElapsedFrames = 0;
         private bool animationComplete = true;
@@ -34,13 +34,13 @@ namespace MonoHack.UI.TitleScreen
             set => backColor = value;
         }
 
-        public int DrawOrder => throw new NotImplementedException();
+        public int DrawOrder => 5;
 
         public bool Visible => true;
 
         public bool Enabled => true;
 
-        public int UpdateOrder => throw new NotImplementedException();
+        public int UpdateOrder => 6;
 
         public event EventHandler ScreenStart;
         public event EventHandler ScreenEnd;
@@ -51,37 +51,45 @@ namespace MonoHack.UI.TitleScreen
 
         public MonoHackTitleScreen(SpriteBatch _spriteBatch, ContentManager _content, GraphicsDevice _graphicsDevice)
         {
+            spriteBatch = _spriteBatch;
+            content = _content;
+            graphicsDevice = _graphicsDevice;
+            mainTheme = new UI.Themes.DefaultTheme(_content, _spriteBatch);
+        }
+
+        public void Initialize()
+        {
             ///
             /// backPanel
             ///
-            backPanel.SpriteBatch = _spriteBatch;
-            backPanel.Bounds = new Rectangle(new Point(0, 0), new Point(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height));
-            backPanel.Theme = new UI.Themes.DefaultTheme(_content);
+            backPanel.SpriteBatch = spriteBatch;
+            backPanel.Bounds = new Rectangle(new Point(0, 0), new Point(graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height));
+            backPanel.Theme = mainTheme;
             backPanel.Theme.BorderSize = 0;
             backPanel.Theme.ActiveColor = BackColor;
 
             // Preliminary setup
             monoHackEngineLabel.Text = "MonoHack Engine";
-            monoHackEngineLabel.Theme = new UI.Themes.DefaultTheme(_content);
-            monoHackEngineLabel.Theme.Font = _content.Load<SpriteFont>("UI/Font/H2");
+            monoHackEngineLabel.Theme = mainTheme;
+            monoHackEngineLabel.Font = content.Load<SpriteFont>("UI/Font/H2");
 
             ///
             /// monohackIcon
             ///
-            monohackIcon.SpriteBatch = _spriteBatch;
-            monohackIcon.Image = _content.Load<Texture2D>("UI/Images/MonoHack_512x");
-            monohackIcon.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - monohackIcon.Image.Bounds.Width / 2,
-                _graphicsDevice.Viewport.Height / 2 - monohackIcon.Image.Bounds.Width / 2 - (int)monoHackEngineLabel.Theme.Font.MeasureString(monoHackEngineLabel.Text).Y + 20),
+            monohackIcon.SpriteBatch = spriteBatch;
+            monohackIcon.Image = content.Load<Texture2D>("UI/Images/MonoHack_512x");
+            monohackIcon.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - monohackIcon.Image.Bounds.Width / 2,
+                graphicsDevice.Viewport.Height / 2 - monohackIcon.Image.Bounds.Width / 2 - (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Y + 20),
                 new Point(monohackIcon.Image.Bounds.Width, monohackIcon.Image.Bounds.Height));
-            monohackIcon.Theme = new UI.Themes.DefaultTheme(_content);
+            monohackIcon.Theme = mainTheme;
             monohackIcon.Opacity = 0f;
 
             ///
             /// monoHackEngineLabel
             ///
-            monoHackEngineLabel.SpriteBatch = _spriteBatch;
-            monoHackEngineLabel.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - (int)monoHackEngineLabel.Theme.Font.MeasureString(monoHackEngineLabel.Text).X / 2,
-                _graphicsDevice.Viewport.Height / 2 + (int)monoHackEngineLabel.Theme.Font.MeasureString(monoHackEngineLabel.Text).Y + (int)monoHackEngineLabel.Theme.Font.MeasureString(monoHackEngineLabel.Text).Y + 20), new Point(0, 0));
+            monoHackEngineLabel.SpriteBatch = spriteBatch;
+            monoHackEngineLabel.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).X / 2,
+                graphicsDevice.Viewport.Height / 2 + (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Y + (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Y + 20), new Point(0, 0));
             monoHackEngineLabel.Theme.BorderSize = 0;
             monoHackEngineLabel.Theme.TextColor = Color.White;
             monoHackEngineLabel.Opacity = 0f;
@@ -89,46 +97,41 @@ namespace MonoHack.UI.TitleScreen
             ///
             /// aGameBy
             ///
-            aGameBy.SpriteBatch = _spriteBatch;
+            aGameBy.SpriteBatch = spriteBatch;
             aGameBy.Text = "a game by";
-            aGameBy.Theme = new UI.Themes.DefaultTheme(_content);
+            aGameBy.Theme = mainTheme;
             aGameBy.Theme.BorderSize = 0;
-            aGameBy.Theme.Font = _content.Load<SpriteFont>("UI/Font/H4");
+            aGameBy.Font = content.Load<SpriteFont>("UI/Font/H4");
             aGameBy.Theme.TextColor = Color.White;
             aGameBy.Opacity = 0f;
-            aGameBy.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - (int)aGameBy.Theme.Font.MeasureString(aGameBy.Text).X / 2,
-                _graphicsDevice.Viewport.Height / 2 - (int)aGameBy.Theme.Font.MeasureString(aGameBy.Text).Y - 20), new Point(0, 0));
-    
+            aGameBy.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)aGameBy.Font.MeasureString(aGameBy.Text).X / 2,
+                graphicsDevice.Viewport.Height / 2 - (int)aGameBy.Font.MeasureString(aGameBy.Text).Y - 20), new Point(0, 0));
+
             ///
             /// ashifter
             ///
-            ashifter.SpriteBatch = _spriteBatch;
+            ashifter.SpriteBatch = spriteBatch;
             ashifter.Text = "ashifter";
-            ashifter.Theme = new UI.Themes.DefaultTheme(_content);
+            ashifter.Theme = mainTheme;
             ashifter.Theme.BorderSize = 0;
-            ashifter.Theme.Font = _content.Load<SpriteFont>("UI/Font/H2");
+            ashifter.Font = content.Load<SpriteFont>("UI/Font/H2");
             ashifter.Theme.TextColor = Color.White;
             ashifter.Opacity = 0f;
-            ashifter.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - (int)ashifter.Theme.Font.MeasureString(ashifter.Text).X / 2,
-                _graphicsDevice.Viewport.Height / 2 - (int)ashifter.Theme.Font.MeasureString(ashifter.Text).Y / 2 + 20), new Point(0, 0));
+            ashifter.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)ashifter.Font.MeasureString(ashifter.Text).X / 2,
+                graphicsDevice.Viewport.Height / 2 - (int)ashifter.Font.MeasureString(ashifter.Text).Y / 2 + 20), new Point(0, 0));
 
             ///
             /// andCommunity
             ///
-            andCommunity.SpriteBatch = _spriteBatch;
+            andCommunity.SpriteBatch = spriteBatch;
             andCommunity.Text = "and the community";
-            andCommunity.Theme = new UI.Themes.DefaultTheme(_content);
+            andCommunity.Theme = mainTheme;
             andCommunity.Theme.BorderSize = 0;
-            andCommunity.Theme.Font = _content.Load<SpriteFont>("UI/Font/H4");
+            andCommunity.Font = content.Load<SpriteFont>("UI/Font/H4");
             andCommunity.Theme.TextColor = Color.White;
             andCommunity.Opacity = 0f;
-            andCommunity.Bounds = new Rectangle(new Point(_graphicsDevice.Viewport.Width / 2 - (int)andCommunity.Theme.Font.MeasureString(andCommunity.Text).X / 2,
-                _graphicsDevice.Viewport.Height / 2 + (int)andCommunity.Theme.Font.MeasureString(andCommunity.Text).Y + 25), new Point(0, 0));
-        }
-
-        public void Initialize()
-        {
-
+            andCommunity.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)andCommunity.Font.MeasureString(andCommunity.Text).X / 2,
+                graphicsDevice.Viewport.Height / 2 + (int)andCommunity.Font.MeasureString(andCommunity.Text).Y + 25), new Point(0, 0));
         }
 
         public void Update(GameTime gameTime)
