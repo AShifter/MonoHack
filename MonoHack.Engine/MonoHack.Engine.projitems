@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>20897774-c135-4aa9-aca2-3917f7bb8648</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MonoHack.Engine</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Checkbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Control.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Label.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Panel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\PictureBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ITitleScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\IUITheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\IWindowType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Themes\DefaultTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\TitleScreen\MonoHackTitleScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\WindowTypes\GameWindow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+  </ItemGroup>
+</Project>

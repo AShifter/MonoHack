@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoHack_Demo
+namespace MonoHack.Demo
 {
     /// <summary>
     /// The main class.
@@ -13,7 +13,7 @@ namespace MonoHack_Demo
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new MonoHack.Game1())
                 game.Run();
         }
     }
