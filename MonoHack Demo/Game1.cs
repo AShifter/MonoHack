@@ -1,4 +1,4 @@
-﻿using DiscordRPC;
+﻿
 using MonoHack.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,10 +23,10 @@ namespace MonoHack
         Applications.IMonoHackApp Win1;
         Engine.WindowTypes.GameWindow Test1;
 
-        public DiscordRpcClient client;
-
         Engine.UI.Control FPSLabel;
         double fps;
+
+        Engine.DiscordRPC rpcTest = new Engine.DiscordRPC();
 
         Engine.UI.ITitleScreen title;
 
@@ -77,38 +77,6 @@ namespace MonoHack
             Console.Title = "MonoHack Engine Console";
 
             Console.WriteLine("[" + DateTime.Now.ToString("MM/dd/yyyy H:mm:ss") + "] MonoHack Engine Initialized.");
-
-            client = new DiscordRpcClient("529725485635338240");
-
-            //Subscribe to events
-            client.OnReady += (sender, e) =>
-            {
-                Console.WriteLine("[" + DateTime.Now.ToString("MM/dd/yyyy H:mm:ss") + "] DiscordRPC Received Ready from user {0}", e.User.Username);
-            };
-
-            client.OnPresenceUpdate += (sender, e) =>
-            {
-                Console.WriteLine("[" + DateTime.Now.ToString("MM/dd/yyyy H:mm:ss") + "] DiscordRPC Received Update {0}", e.Presence);
-            };
-
-            //Connect to the RPC
-            client.Initialize();
-
-            //Set the rich presence
-            //Call this as many times as you want and anywhere in your code.
-            client.SetPresence(new RichPresence()
-            {
-                Details = "MonoHack Engine Demo",
-                State = "Main Menu",
-                Assets = new Assets()
-                {
-                    LargeImageKey = "monohack_512x",
-                    LargeImageText = "Playing MonoHack",
-                    SmallImageKey = "debug",
-                    SmallImageText = "Debugging"
-                },
-                Timestamps = new Timestamps(DateTime.UtcNow) { }
-            });
         }
 
         /// <summary>
@@ -130,6 +98,8 @@ namespace MonoHack
             FPSLabel.Theme = new Engine.UI.Themes.DefaultTheme(Content, spriteBatch);
             FPSLabel.Font = FPSLabel.Theme.Font;
             FPSLabel.Text = "FPS: 0";
+
+            rpcTest.Initialize();
         }
 
         /// <summary>
@@ -169,8 +139,6 @@ namespace MonoHack
 
             // TODO: Add your update logic here
             FPSLabel.Text = "FPS: " + fps;
-
-            client.Invoke();
 
             //Test1.Update(gameTime);
             base.Update(gameTime);
