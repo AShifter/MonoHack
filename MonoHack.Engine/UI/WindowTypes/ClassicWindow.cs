@@ -58,6 +58,7 @@ namespace MonoHack.Engine.WindowTypes
             WindowPanel.Theme = new Engine.UI.Themes.DefaultTheme(_content, _spriteBatch);
             WindowPanel.Theme.BorderSize = 4;
             WindowPanel.Theme.BorderColor = Color.FromNonPremultiplied(64, 64, 64, 255);
+            WindowPanel.Color = new Color(192, 192, 192);
 
             ///
             /// TitleBar
@@ -65,14 +66,14 @@ namespace MonoHack.Engine.WindowTypes
             TitleBar.SpriteBatch = spriteBatch;
             TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X, WindowPanel.Bounds.Y), new Point(WindowPanel.Bounds.Width, 18));
             TitleBar.Theme = new Engine.UI.Themes.DefaultTheme(_content, _spriteBatch);
-            TitleBar.Theme.ActiveColor = new Color(0, 0, 128);
-            TitleBar.Theme.BorderSize = 0;
+            TitleBar.Color = new Color(0, 0, 128);
+            TitleBar.Theme.ControlStyle = UI.Styles.ControlStyles.Flat;
 
             ///
             /// Title
             ///
             Title.SpriteBatch = spriteBatch;
-            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 5, WindowPanel.Bounds.Y + 4), new Point(0, 0));
+            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 5, WindowPanel.Bounds.Y + 1), new Point(0, 0));
             Title.Theme = new Engine.UI.Themes.DefaultTheme(_content, _spriteBatch);
             Title.Font = Title.Theme.Font;
             Title.Theme.TextColor = Color.White;

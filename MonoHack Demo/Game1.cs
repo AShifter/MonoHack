@@ -1,5 +1,6 @@
 ﻿
 using MonoHack.Engine;
+using MonoHack.Engine.WindowTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -21,7 +22,7 @@ namespace MonoHack
         Vector2 MousePosition;
         SpriteFont Font;
         Applications.IMonoHackApp Win1;
-        Engine.WindowTypes.ClassicWindow Test1;
+        ClassicWindow Test1;
 
         Engine.UI.Control FPSLabel;
         double fps;
@@ -58,7 +59,7 @@ namespace MonoHack
 
             Win1 = new Applications.TestApp1(spriteBatch, Content);
 
-            Test1 = new Engine.WindowTypes.ClassicWindow(spriteBatch, Content, GraphicsDevice, Win1);
+            Test1 = new ClassicWindow(spriteBatch, Content, GraphicsDevice, Win1);
 
             Components.Add(Win1);
 

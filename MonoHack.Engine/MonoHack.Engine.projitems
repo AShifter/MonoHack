@@ -9,7 +9,6 @@
     <Import_RootNamespace>MonoHack.Engine</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)MonoHack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Checkbox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Control.cs" />

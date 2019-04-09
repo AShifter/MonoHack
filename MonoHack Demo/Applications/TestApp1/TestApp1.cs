@@ -1,6 +1,7 @@
 ﻿using System;
 using MonoHack.Engine;
 using MonoHack.Engine.UI;
+using MonoHack.Engine.UI.Styles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -100,6 +101,8 @@ namespace MonoHack.Applications
             Cbx1.Text = "Checkbox! This one is currently Unchecked.";
             Cbx1.Theme = new Engine.UI.Themes.DefaultTheme(content, spriteBatch);
             Cbx1.Font = TestLabel.Theme.Font;
+            Cbx1.Theme.ControlStyle = ControlStyles.Indent;
+            Cbx1.Theme.ActiveColor = Color.White;
 
             ///
             /// Btn1
@@ -125,6 +128,7 @@ namespace MonoHack.Applications
             Pbx1.SpriteBatch = spriteBatch;
             Pbx1.Theme = new Engine.UI.Themes.DefaultTheme(content, spriteBatch);
             Pbx1.Image = _content.Load<Texture2D>("UI/Images/monohack_512x");
+            Pbx1.Theme.ControlStyle = ControlStyles.Indent;
 
             Btn1.OnClick += (s, e) => Lbl2.Opacity = 1f;
             Btn1.OnLeave += (s, e) => Lbl2.Opacity = 0f;

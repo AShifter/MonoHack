@@ -5,6 +5,8 @@
         None,
         Flat,
         Border,
+        Surface,
+        Indent,
         Popup
     };
 }

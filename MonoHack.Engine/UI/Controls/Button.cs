@@ -129,6 +129,66 @@ namespace MonoHack.Engine.UI.Controls
 
                 if ((int)theme.ControlStyle == 3)
                 {
+                    // Draw White
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 1,
+                         controlBounds.Y - 1),
+                        new Point(
+                         controlBounds.Width + 2,
+                         controlBounds.Height + 2)),
+                         new Color(255, 255, 255) * opacity);
+
+                    // Draw Dark Grey
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 1,
+                         controlBounds.Y - 1),
+                        new Point(
+                         controlBounds.Width + 1,
+                         controlBounds.Height + 1)),
+                        new Color(128, 128, 128) * opacity);
+                }
+
+                if ((int)theme.ControlStyle == 4)
+                {
+                    // Draw White
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 2,
+                         controlBounds.Y - 2),
+                        new Point(
+                         controlBounds.Width + 4,
+                         controlBounds.Height + 4)),
+                         new Color(255, 255, 255) * opacity);
+
+                    // Draw Dark Grey
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 2,
+                         controlBounds.Y - 2),
+                        new Point(
+                         controlBounds.Width + 3,
+                         controlBounds.Height + 3)),
+                         new Color(128, 128, 128) * opacity);
+
+                    // Draw Light Grey
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 1,
+                         controlBounds.Y - 1),
+                        new Point(
+                         controlBounds.Width + 2,
+                         controlBounds.Height + 2)),
+                         new Color(192, 192, 192) * opacity);
+
+                    // Draw Black
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 1,
+                         controlBounds.Y - 1),
+                        new Point(
+                         controlBounds.Width + 1,
+                         controlBounds.Height + 1)),
+                         new Color(0, 0, 0) * opacity);
+                }
+
+                if ((int)theme.ControlStyle == 5)
+                {
                     // Draw Black
                     spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
                          controlBounds.X - 1,
@@ -158,19 +218,6 @@ namespace MonoHack.Engine.UI.Controls
                 }
                 // Draw Button
                 spriteBatch.Draw(theme.BaseTexture, controlBounds, currentColor * opacity);
-
-                // Draw X button
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 3, controlBounds.Y + 2, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 4, controlBounds.Y + 3, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 5, controlBounds.Y + 4, 4, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 9, controlBounds.Y + 2, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 8, controlBounds.Y + 3, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 6, controlBounds.Y + 5, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 5, controlBounds.Y + 6, 4, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 4, controlBounds.Y + 7, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 3, controlBounds.Y + 8, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 8, controlBounds.Y + 7, 2, 1), new Color(0, 0, 0) * opacity);
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 9, controlBounds.Y + 8, 2, 1), new Color(0, 0, 0) * opacity);
 
                 // Draw Text
                 spriteBatch.DrawString(theme.Font, text, new Vector2(
