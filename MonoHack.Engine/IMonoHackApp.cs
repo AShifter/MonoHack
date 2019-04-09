@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoHack.Applications
+namespace MonoHack.Engine
 {
     public interface IMonoHackApp : IGameComponent, IDrawable, IUpdateable
     {

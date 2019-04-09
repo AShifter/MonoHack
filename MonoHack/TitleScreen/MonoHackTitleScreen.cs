@@ -2,27 +2,31 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoHack.Engine.UI;
+using MonoHack.Engine.UI.Controls;
+using MonoHack.Engine.UI.Styles;
+using MonoHack.Engine.UI.Themes;
 
-namespace MonoHack.Engine.UI.TitleScreen
+namespace MonoHack.TitleScreen
 {
-    class MonoHackTitleScreen : ITitleScreen
+    public class MonoHackTitleScreen : ITitleScreen
     {
         // Local Properties
-        private UI.IUITheme mainTheme;
+        private IUITheme mainTheme;
         private Color backColor = Color.Black;
         private SpriteBatch spriteBatch;
         private ContentManager content;
         private GraphicsDevice graphicsDevice;
 
         // TitleScreen Scene 1 Controls
-        private Control backPanel = new UI.Controls.Panel();
-        private Control monohackIcon = new UI.Controls.PictureBox();
-        private Control monoHackEngineLabel = new UI.Controls.Label();
+        private Control backPanel = new Panel();
+        private Control monohackIcon = new PictureBox();
+        private Control monoHackEngineLabel = new Label();
 
         // TitleScreen Scene 2 Controls
-        private Control aGameBy = new UI.Controls.Label();
-        private Control ashifter = new UI.Controls.Label();
-        private Control andCommunity = new UI.Controls.Label();
+        private Control aGameBy = new Label();
+        private Control ashifter = new Label();
+        private Control andCommunity = new Label();
 
         private int totalElapsedFrames = 0;
         private bool animationComplete = true;
@@ -54,7 +58,7 @@ namespace MonoHack.Engine.UI.TitleScreen
             spriteBatch = _spriteBatch;
             content = _content;
             graphicsDevice = _graphicsDevice;
-            mainTheme = new UI.Themes.DefaultTheme(_content, _spriteBatch);
+            mainTheme = new DefaultTheme(_content, _spriteBatch);
         }
 
         public void Initialize()
@@ -83,7 +87,7 @@ namespace MonoHack.Engine.UI.TitleScreen
                 new Point(monohackIcon.Image.Bounds.Width, monohackIcon.Image.Bounds.Height));
             monohackIcon.Theme = mainTheme;
             monohackIcon.Opacity = 0f;
-            monohackIcon.Theme.ControlStyle = Styles.ControlStyles.Flat;
+            monohackIcon.Theme.ControlStyle = ControlStyles.Flat;
 
             ///
             /// monoHackEngineLabel

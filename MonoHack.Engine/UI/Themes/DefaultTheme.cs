@@ -6,7 +6,7 @@ using MonoHack.Engine.UI.Styles;
 
 namespace MonoHack.Engine.UI.Themes
 {
-    class DefaultTheme : IUITheme
+    public class DefaultTheme : IUITheme
     {
         Texture2D baseTexture;
         SpriteFont font;

@@ -8,7 +8,7 @@ using MonoHack.Engine.UI.Controls;
 
 namespace MonoHack.Engine.WindowTypes
 {
-    class ClassicWindow : IGameComponent, IUpdateable, IDrawable
+    public class ClassicWindow : IGameComponent, IUpdateable, IDrawable
     {
         GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
@@ -23,7 +23,7 @@ namespace MonoHack.Engine.WindowTypes
 
         Point dragHandle = new Point();
 
-        Applications.IMonoHackApp app;
+        IMonoHackApp app;
 
         bool TitleBarDrag;
 
@@ -42,7 +42,7 @@ namespace MonoHack.Engine.WindowTypes
 
         public bool Visible => true;
 
-        public ClassicWindow(SpriteBatch _spriteBatch, ContentManager _content, GraphicsDevice _graphicsDevice, Applications.IMonoHackApp App)
+        public ClassicWindow(SpriteBatch _spriteBatch, ContentManager _content, GraphicsDevice _graphicsDevice, IMonoHackApp App)
         {
             spriteBatch = _spriteBatch;
             app = App;

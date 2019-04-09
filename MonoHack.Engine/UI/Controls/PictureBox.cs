@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoHack.Engine.UI.Controls
 {
-    class PictureBox : Control
+    public class PictureBox : Control
     {
         // Local Control Properties
         public SpriteBatch spriteBatch;
