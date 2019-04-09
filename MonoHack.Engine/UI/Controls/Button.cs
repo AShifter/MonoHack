@@ -112,19 +112,66 @@ namespace MonoHack.Engine.UI.Controls
         // Draw - Draw the control
         public override void Draw(GameTime gameTime)
         {
-            if (visible)
+            if (visible && (int)theme.ControlStyle > 0)
             {
                 spriteBatch.Begin();
-                // Draw Border
-                spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
-                     controlBounds.X - theme.BorderSize,
-                     controlBounds.Y - theme.BorderSize),
-                    new Point(
-                     controlBounds.Width + theme.BorderSize * 2,
-                     controlBounds.Height + theme.BorderSize * 2)),
-                     theme.BorderColor * opacity);
+                if ((int)theme.ControlStyle == 2)
+                {
+                    // Draw Border
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - theme.BorderSize,
+                         controlBounds.Y - theme.BorderSize),
+                        new Point(
+                         controlBounds.Width + theme.BorderSize * 2,
+                         controlBounds.Height + theme.BorderSize * 2)),
+                         theme.BorderColor * opacity);
+                }
+
+                if ((int)theme.ControlStyle == 3)
+                {
+                    // Draw Black
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 1,
+                         controlBounds.Y - 1),
+                        new Point(
+                         controlBounds.Width + 3,
+                         controlBounds.Height + 3)),
+                         new Color(0, 0, 0) * opacity);
+
+                    // Draw White
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X - 1,
+                         controlBounds.Y - 1),
+                        new Point(
+                         controlBounds.Width + 2,
+                         controlBounds.Height + 2)),
+                         new Color(255, 255, 255) * opacity);
+
+                    // Draw Dark Grey
+                    spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
+                         controlBounds.X,
+                         controlBounds.Y),
+                        new Point(
+                         controlBounds.Width + 1,
+                         controlBounds.Height + 1)),
+                         new Color(128, 128, 128) * opacity);
+                }
                 // Draw Button
                 spriteBatch.Draw(theme.BaseTexture, controlBounds, currentColor * opacity);
+
+                // Draw X button
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 3, controlBounds.Y + 2, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 4, controlBounds.Y + 3, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 5, controlBounds.Y + 4, 4, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 9, controlBounds.Y + 2, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 8, controlBounds.Y + 3, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 6, controlBounds.Y + 5, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 5, controlBounds.Y + 6, 4, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 4, controlBounds.Y + 7, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 3, controlBounds.Y + 8, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 8, controlBounds.Y + 7, 2, 1), new Color(0, 0, 0) * opacity);
+                spriteBatch.Draw(theme.BaseTexture, new Rectangle(controlBounds.X + 9, controlBounds.Y + 8, 2, 1), new Color(0, 0, 0) * opacity);
+
                 // Draw Text
                 spriteBatch.DrawString(theme.Font, text, new Vector2(
                     (controlBounds.X + controlBounds.Width / 2) - theme.Font.MeasureString(text).X / 2,

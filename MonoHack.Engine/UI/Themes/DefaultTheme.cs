@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoHack.Engine.UI.Styles;
 
 namespace MonoHack.Engine.UI.Themes
 {
@@ -10,6 +11,7 @@ namespace MonoHack.Engine.UI.Themes
         Texture2D baseTexture;
         SpriteFont font;
         int borderSize;
+        ControlStyles controlStyle;
         Color disableColor;
         Color activeColor;
         Color hoverColor;
@@ -20,11 +22,15 @@ namespace MonoHack.Engine.UI.Themes
         public DefaultTheme(ContentManager content, SpriteBatch spriteBatch)
         {
             baseTexture = content.Load<Texture2D>("UI/Images/Pixel");
+
             font = content.Load<SpriteFont>("UI/Font/Main");
 
             borderSize = 2;
+
+            controlStyle = ControlStyles.Popup;
+
             disableColor = Color.DimGray;
-            activeColor = Color.White;
+            activeColor = new Color(192, 192, 192);
             hoverColor = Color.Gray;
             clickColor = Color.Black;
             borderColor = Color.Black;
@@ -46,6 +52,12 @@ namespace MonoHack.Engine.UI.Themes
         {
             get => borderSize;
             set => borderSize = value;
+        }
+
+        public ControlStyles ControlStyle
+        {
+            get => controlStyle;
+            set => controlStyle = value;
         }
 
         public Color DisableColor

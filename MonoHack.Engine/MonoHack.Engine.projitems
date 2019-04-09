@@ -9,7 +9,6 @@
     <Import_RootNamespace>MonoHack.Engine</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)DiscordRPC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MonoHack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Controls\Checkbox.cs" />
@@ -20,8 +19,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\ITitleScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\IUITheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\IWindowType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Styles\ControlStyles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Themes\DefaultTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\TitleScreen\MonoHackTitleScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\WindowTypes\ClassicWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\WindowTypes\GameWindow.cs" />
   </ItemGroup>
   <ItemGroup>

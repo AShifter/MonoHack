@@ -21,12 +21,10 @@ namespace MonoHack
         Vector2 MousePosition;
         SpriteFont Font;
         Applications.IMonoHackApp Win1;
-        Engine.WindowTypes.GameWindow Test1;
+        Engine.WindowTypes.ClassicWindow Test1;
 
         Engine.UI.Control FPSLabel;
         double fps;
-
-        Engine.DiscordRPC rpcTest = new Engine.DiscordRPC();
 
         Engine.UI.ITitleScreen title;
 
@@ -60,7 +58,7 @@ namespace MonoHack
 
             Win1 = new Applications.TestApp1(spriteBatch, Content);
 
-            Test1 = new Engine.WindowTypes.GameWindow(spriteBatch, Content, GraphicsDevice, Win1);
+            Test1 = new Engine.WindowTypes.ClassicWindow(spriteBatch, Content, GraphicsDevice, Win1);
 
             Components.Add(Win1);
 
@@ -98,8 +96,6 @@ namespace MonoHack
             FPSLabel.Theme = new Engine.UI.Themes.DefaultTheme(Content, spriteBatch);
             FPSLabel.Font = FPSLabel.Theme.Font;
             FPSLabel.Text = "FPS: 0";
-
-            rpcTest.Initialize();
         }
 
         /// <summary>
