@@ -105,6 +105,8 @@ namespace MonoHack.Engine.UI.Controls
         // Draw - Draw the control
         public override void Draw(GameTime gameTime)
         {
+            currentColor = theme.ActiveColor;
+
             if (visible && (int)theme.ControlStyle > 0)
             {
                 spriteBatch.Begin();

@@ -6,7 +6,7 @@ using MonoHack.Engine.UI.Styles;
 
 namespace MonoHack.Engine.UI.Themes
 {
-    class DefaultTheme : IUITheme
+    class ClassicTheme : IUITheme
     {
         Texture2D baseTexture;
         SpriteFont font;
@@ -19,7 +19,7 @@ namespace MonoHack.Engine.UI.Themes
         Color borderColor;
         Color textColor;
 
-        public DefaultTheme(ContentManager content, SpriteBatch spriteBatch)
+        public ClassicTheme(ContentManager content, SpriteBatch spriteBatch)
         {
             baseTexture = content.Load<Texture2D>("UI/Images/Pixel");
 
@@ -27,10 +27,10 @@ namespace MonoHack.Engine.UI.Themes
 
             borderSize = 2;
 
-            controlStyle = ControlStyles.Border;
+            controlStyle = ControlStyles.Popup;
 
             disableColor = Color.DimGray;
-            activeColor = Color.White;
+            activeColor = new Color(192, 192, 192);
             hoverColor = Color.Gray;
             clickColor = Color.Black;
             borderColor = Color.Black;

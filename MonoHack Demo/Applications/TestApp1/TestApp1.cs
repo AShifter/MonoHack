@@ -91,7 +91,7 @@ namespace MonoHack.Applications
             ///
             TestLabel.SpriteBatch = spriteBatch;
             TestLabel.Text = "Welcome to the MonoHack 0.1a Demo! Here's what I\nhave so far. Mess with controls down there and\ncheck your discord profile; Discord RPC is\nexperimental but should be working.\n\nNote: Try dragging this window around!\nContext buttons are not yet functional.";
-            TestLabel.Theme = new Engine.UI.Themes.DefaultTheme(content, spriteBatch);
+            TestLabel.Theme = new Engine.UI.Themes.ClassicTheme(content, spriteBatch);
             TestLabel.Font = TestLabel.Theme.Font;
 
             ///
@@ -99,9 +99,8 @@ namespace MonoHack.Applications
             ///
             Cbx1.SpriteBatch = spriteBatch;
             Cbx1.Text = "Checkbox! This one is currently Unchecked.";
-            Cbx1.Theme = new Engine.UI.Themes.DefaultTheme(content, spriteBatch);
+            Cbx1.Theme = new Engine.UI.Themes.ClassicTheme(content, spriteBatch);
             Cbx1.Font = TestLabel.Theme.Font;
-            Cbx1.Theme.ControlStyle = ControlStyles.Indent;
             Cbx1.Theme.ActiveColor = Color.White;
 
             ///
@@ -110,7 +109,7 @@ namespace MonoHack.Applications
             Btn1.SpriteBatch = spriteBatch;
             Btn1.Text = "Look, a Button!";
             Btn1.Bounds = new Rectangle(new Point(_bounds.Location.X + 8, _bounds.Location.Y + 160 + 26), new Point(150, 25));
-            Btn1.Theme = new Engine.UI.Themes.DefaultTheme(content, spriteBatch);
+            Btn1.Theme = new Engine.UI.Themes.ClassicTheme(content, spriteBatch);
             Btn1.Font = TestLabel.Theme.Font;
 
             ///
@@ -119,16 +118,15 @@ namespace MonoHack.Applications
             Lbl2.SpriteBatch = spriteBatch;
             Lbl2.Text = "MouseDown Event fired!";
             Lbl2.Opacity = 0f;
-            Lbl2.Theme = new Engine.UI.Themes.DefaultTheme(content, spriteBatch);
+            Lbl2.Theme = new Engine.UI.Themes.ClassicTheme(content, spriteBatch);
             Lbl2.Font = TestLabel.Theme.Font;
 
             ///
             /// Pbx1
             ///
             Pbx1.SpriteBatch = spriteBatch;
-            Pbx1.Theme = new Engine.UI.Themes.DefaultTheme(content, spriteBatch);
+            Pbx1.Theme = new Engine.UI.Themes.ClassicTheme(content, spriteBatch);
             Pbx1.Image = _content.Load<Texture2D>("UI/Images/monohack_512x");
-            Pbx1.Theme.ControlStyle = ControlStyles.Indent;
 
             Btn1.OnClick += (s, e) => Lbl2.Opacity = 1f;
             Btn1.OnLeave += (s, e) => Lbl2.Opacity = 0f;

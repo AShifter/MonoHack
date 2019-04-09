@@ -19,10 +19,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\IUITheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\IWindowType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Styles\ControlStyles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Themes\ClassicTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Themes\DefaultTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\TitleScreen\MonoHackTitleScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\WindowTypes\ClassicWindow.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\WindowTypes\GameWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\WindowTypes\DefaultWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

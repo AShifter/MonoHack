@@ -22,7 +22,6 @@ namespace MonoHack
         Vector2 MousePosition;
         SpriteFont Font;
         Applications.IMonoHackApp Win1;
-        ClassicWindow Test1;
 
         Engine.UI.Control FPSLabel;
         double fps;
@@ -59,7 +58,7 @@ namespace MonoHack
 
             Win1 = new Applications.TestApp1(spriteBatch, Content);
 
-            Test1 = new ClassicWindow(spriteBatch, Content, GraphicsDevice, Win1);
+            ClassicWindow Test1 = new ClassicWindow(spriteBatch, Content, GraphicsDevice, Win1);
 
             Components.Add(Win1);
 
@@ -147,7 +146,7 @@ namespace MonoHack
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(new Color(0, 128, 128));
 
             base.Draw(gameTime);
 

@@ -163,7 +163,7 @@ namespace MonoHack.Engine.UI.Controls
                         new Color(128, 128, 128) * opacity);
                 }
 
-                if ((int)theme.ControlStyle == 4)
+                if ((int)theme.ControlStyle == 5)
                 {
                     // Draw White
                     spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(
@@ -202,7 +202,7 @@ namespace MonoHack.Engine.UI.Controls
                          new Color(0, 0, 0) * opacity);
                 }
 
-                if ((int)theme.ControlStyle == 5)
+                if ((int)theme.ControlStyle == 4)
                 {
                     // Draw Black
                     spriteBatch.Draw(theme.BaseTexture, new Rectangle(new Point(

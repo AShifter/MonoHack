@@ -48,6 +48,42 @@
 /processorParam:TextureFormat=Compressed
 /build:UI/Font/Main.spritefont
 
+#begin UI/Images/ClassicTheme/ClassicClose.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Images/ClassicTheme/ClassicClose.png
+
+#begin UI/Images/ClassicTheme/ClassicMax.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Images/ClassicTheme/ClassicMax.png
+
+#begin UI/Images/ClassicTheme/ClassicMin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Images/ClassicTheme/ClassicMin.png
+
 #begin UI/Images/Cursor/DefaultCursor.png
 /importer:TextureImporter
 /processor:TextureProcessor

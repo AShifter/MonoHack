@@ -8,7 +8,7 @@ using MonoHack.Engine.UI.Controls;
 
 namespace MonoHack.Engine.WindowTypes
 {
-    class GameWindow : IGameComponent, IUpdateable, IDrawable
+    class DefaultWindow : IGameComponent, IUpdateable, IDrawable
     {
         GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
@@ -42,7 +42,7 @@ namespace MonoHack.Engine.WindowTypes
 
         public bool Visible => true;
 
-        public GameWindow(SpriteBatch _spriteBatch, ContentManager _content, GraphicsDevice _graphicsDevice, Applications.IMonoHackApp App)
+        public DefaultWindow(SpriteBatch _spriteBatch, ContentManager _content, GraphicsDevice _graphicsDevice, Applications.IMonoHackApp App)
         {
             spriteBatch = _spriteBatch;
             app = App;

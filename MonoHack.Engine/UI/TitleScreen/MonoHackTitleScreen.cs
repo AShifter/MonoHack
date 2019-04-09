@@ -83,6 +83,7 @@ namespace MonoHack.Engine.UI.TitleScreen
                 new Point(monohackIcon.Image.Bounds.Width, monohackIcon.Image.Bounds.Height));
             monohackIcon.Theme = mainTheme;
             monohackIcon.Opacity = 0f;
+            monohackIcon.Theme.ControlStyle = Styles.ControlStyles.Flat;
 
             ///
             /// monoHackEngineLabel

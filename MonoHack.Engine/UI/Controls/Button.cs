@@ -219,11 +219,20 @@ namespace MonoHack.Engine.UI.Controls
                 // Draw Button
                 spriteBatch.Draw(theme.BaseTexture, controlBounds, currentColor * opacity);
 
+                // Draw Image
+                if (image != null)
+                {
+                    spriteBatch.Draw(image, controlBounds, Color.White * opacity);
+                }
+
                 // Draw Text
-                spriteBatch.DrawString(theme.Font, text, new Vector2(
-                    (controlBounds.X + controlBounds.Width / 2) - theme.Font.MeasureString(text).X / 2,
-                    (controlBounds.Y + controlBounds.Height / 2) - theme.Font.MeasureString(text).Y / 2),
-                    theme.TextColor * opacity);
+                if (text != null)
+                {
+                    spriteBatch.DrawString(theme.Font, text, new Vector2(
+                        (controlBounds.X + controlBounds.Width / 2) - theme.Font.MeasureString(text).X / 2,
+                        (controlBounds.Y + controlBounds.Height / 2) - theme.Font.MeasureString(text).Y / 2),
+                        theme.TextColor * opacity);
+                }
                 spriteBatch.End();
             }
         }
