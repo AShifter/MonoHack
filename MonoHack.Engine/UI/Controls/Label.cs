@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoHack.Engine.UI.Controls
 {
-    class Label : Control
+    public class Label : Control
     {
         // Local Control Properties
         public SpriteBatch spriteBatch;

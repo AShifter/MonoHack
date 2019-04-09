@@ -1,6 +1,7 @@
 ﻿
 using MonoHack.Engine;
 using MonoHack.Engine.WindowTypes;
+using MonoHack.TitleScreen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,7 +12,7 @@ namespace MonoHack
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class MonoHackGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -21,7 +22,7 @@ namespace MonoHack
         Texture2D Pixel;
         Vector2 MousePosition;
         SpriteFont Font;
-        Applications.IMonoHackApp Win1;
+        IMonoHackApp Win1;
 
         Engine.UI.Control FPSLabel;
         double fps;
@@ -34,7 +35,7 @@ namespace MonoHack
         // The time elapsed since the last forced garbage collection.
         double GarbageCollectionTime = 0.0;
 
-        public Game1()
+        public MonoHackGame()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1024;
@@ -64,7 +65,7 @@ namespace MonoHack
 
             Components.Add(Test1);
 
-            title = new MonoHack.Engine.UI.TitleScreen.MonoHackTitleScreen(spriteBatch, Content, GraphicsDevice);
+            title = new MonoHackTitleScreen(spriteBatch, Content, GraphicsDevice);
 
             title.Initialize();
 

@@ -23,7 +23,7 @@ namespace MonoHack.Engine.WindowTypes
 
         Point dragHandle = new Point();
 
-        Applications.IMonoHackApp app;
+        IMonoHackApp app;
 
         bool TitleBarDrag;
 
@@ -42,7 +42,7 @@ namespace MonoHack.Engine.WindowTypes
 
         public bool Visible => true;
 
-        public DefaultWindow(SpriteBatch _spriteBatch, ContentManager _content, GraphicsDevice _graphicsDevice, Applications.IMonoHackApp App)
+        public DefaultWindow(SpriteBatch _spriteBatch, ContentManager _content, GraphicsDevice _graphicsDevice, IMonoHackApp App)
         {
             spriteBatch = _spriteBatch;
             app = App;

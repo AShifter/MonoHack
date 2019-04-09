@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoHack.Engine.UI.Controls
 {
-    class Checkbox : Control
+    public class Checkbox : Control
     {
         // Local Control Properties
         public SpriteBatch spriteBatch;
