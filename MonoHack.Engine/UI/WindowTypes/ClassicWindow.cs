@@ -15,6 +15,7 @@ namespace MonoHack.Engine.WindowTypes
         MouseState mouseState;
 
         Control WindowPanel = new Panel();
+        Control BackPanel = new Panel();
         Control TitleBar = new Panel();
         Control Title = new Label();
         Control btnClose = new Button();
@@ -61,10 +62,19 @@ namespace MonoHack.Engine.WindowTypes
             WindowPanel.Color = new Color(192, 192, 192);
 
             ///
+            /// BackPanel
+            ///
+            BackPanel.SpriteBatch = spriteBatch;
+            BackPanel.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X - 2, WindowPanel.Bounds.Y - 2), new Point(WindowPanel.Bounds.Width + 4, WindowPanel.Bounds.Height + 4));
+            BackPanel.Theme = new Engine.UI.Themes.ClassicTheme(_content, _spriteBatch);
+            BackPanel.Theme.ControlStyle = UI.Styles.ControlStyles.Flat;
+            BackPanel.Color = new Color(0, 0, 0);
+
+            ///
             /// TitleBar
             /// 
             TitleBar.SpriteBatch = spriteBatch;
-            TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X, WindowPanel.Bounds.Y), new Point(WindowPanel.Bounds.Width, 18));
+            TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 2, WindowPanel.Bounds.Y + 2), new Point(WindowPanel.Bounds.Width - 4, 18));
             TitleBar.Theme = new Engine.UI.Themes.ClassicTheme(_content, _spriteBatch);
             TitleBar.Theme.ActiveColor = new Color(0, 0, 128);
             TitleBar.Theme.ControlStyle = UI.Styles.ControlStyles.Flat;
@@ -73,7 +83,7 @@ namespace MonoHack.Engine.WindowTypes
             /// Title
             ///
             Title.SpriteBatch = spriteBatch;
-            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 5, WindowPanel.Bounds.Y + 1), new Point(0, 0));
+            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 7, WindowPanel.Bounds.Y + 3), new Point(0, 0));
             Title.Theme = new Engine.UI.Themes.ClassicTheme(_content, _spriteBatch);
             Title.Font = Title.Theme.Font;
             Title.Theme.TextColor = Color.White;
@@ -83,7 +93,7 @@ namespace MonoHack.Engine.WindowTypes
             /// btnClose
             ///
             btnClose.SpriteBatch = spriteBatch;
-            btnClose.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 17, WindowPanel.Bounds.Y + 3), new Point(13, 11));
+            btnClose.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 19, WindowPanel.Bounds.Y + 5), new Point(13, 11));
             btnClose.Theme = new Engine.UI.Themes.ClassicTheme(_content, _spriteBatch);
             btnClose.Theme.BorderSize = 0;
             btnClose.Image = _content.Load<Texture2D>("UI/Images/ClassicTheme/ClassicClose");
@@ -92,7 +102,7 @@ namespace MonoHack.Engine.WindowTypes
             /// btnMax
             ///
             btnMax.SpriteBatch = spriteBatch;
-            btnMax.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 35, WindowPanel.Bounds.Y + 3), new Point(13, 11));
+            btnMax.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 37, WindowPanel.Bounds.Y + 5), new Point(13, 11));
             btnMax.Theme = new Engine.UI.Themes.ClassicTheme(_content, _spriteBatch);
             btnMax.Theme.BorderSize = 0;
             btnMax.Image = _content.Load<Texture2D>("UI/Images/ClassicTheme/ClassicMax");
@@ -101,7 +111,7 @@ namespace MonoHack.Engine.WindowTypes
             /// btnMin
             ///
             btnMin.SpriteBatch = spriteBatch;
-            btnMin.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 51, WindowPanel.Bounds.Y + 3), new Point(13, 11));
+            btnMin.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 53, WindowPanel.Bounds.Y + 5), new Point(13, 11));
             btnMin.Theme = new Engine.UI.Themes.ClassicTheme(_content, _spriteBatch);
             btnMin.Image = _content.Load<Texture2D>("UI/Images/ClassicTheme/ClassicMin");
             btnMin.Theme.BorderSize = 0;
@@ -143,6 +153,7 @@ namespace MonoHack.Engine.WindowTypes
 
         public void Draw(GameTime gameTime)
         {
+            BackPanel.Draw(gameTime);
             WindowPanel.Draw(gameTime);
             TitleBar.Draw(gameTime);
             Title.Draw(gameTime);
@@ -157,11 +168,12 @@ namespace MonoHack.Engine.WindowTypes
             TitleBarDrag = true;
 
             WindowPanel.Bounds = new Rectangle(new Point(mouseState.X - dragHandle.X, mouseState.Y - dragHandle.Y), WindowPanel.Bounds.Size);
-            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 5, WindowPanel.Bounds.Y + 1), new Point(1, 1));
-            TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X, WindowPanel.Bounds.Y), new Point(WindowPanel.Bounds.Width, 18));
-            btnClose.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 17, WindowPanel.Bounds.Y + 3), new Point(13, 11));
-            btnMax.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 35, WindowPanel.Bounds.Y + 3), new Point(13, 11));
-            btnMin.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 51, WindowPanel.Bounds.Y + 3), new Point(13, 11));
+            BackPanel.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X - 2, WindowPanel.Bounds.Y - 2), new Point(WindowPanel.Bounds.Width + 4, WindowPanel.Bounds.Height + 4));
+            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 7, WindowPanel.Bounds.Y + 3), new Point(1, 1));
+            TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 2, WindowPanel.Bounds.Y + 2), new Point(WindowPanel.Bounds.Width - 4, 18));
+            btnClose.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 19, WindowPanel.Bounds.Y + 5), new Point(13, 11));
+            btnMax.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 37, WindowPanel.Bounds.Y + 5), new Point(13, 11));
+            btnMin.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 53, WindowPanel.Bounds.Y + 5), new Point(13, 11));
 
             app.Bounds = new Rectangle(WindowPanel.Bounds.Location, app.Bounds.Size);
         }

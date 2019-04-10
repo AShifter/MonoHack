@@ -108,7 +108,7 @@ namespace MonoHack.Engine.UI.Controls
             if (visible)
             {
                 currentColor = theme.ActiveColor;
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
                 // Draw Text
                 spriteBatch.DrawString(font, text, new Vector2(controlBounds.X, controlBounds.Y), theme.TextColor * opacity);
                 spriteBatch.End();

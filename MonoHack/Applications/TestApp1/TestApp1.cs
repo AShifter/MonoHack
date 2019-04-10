@@ -128,8 +128,8 @@ namespace MonoHack.Applications
             Pbx1.Theme = new Engine.UI.Themes.ClassicTheme(content, spriteBatch);
             Pbx1.Image = _content.Load<Texture2D>("UI/Images/monohack_512x");
 
-            Btn1.OnClick += (s, e) => Lbl2.Opacity = 1f;
-            Btn1.OnLeave += (s, e) => Lbl2.Opacity = 0f;
+            Btn1.OnClick += (s, e) => Btn1.Theme.ControlStyle = ControlStyles.Indent;
+            Btn1.OnLeave += (s, e) => Btn1.Theme.ControlStyle = ControlStyles.Popup;
         }
 
         // Initialize Method. Inherited from IGameComponent.

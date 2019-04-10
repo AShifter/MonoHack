@@ -56,6 +56,7 @@ namespace MonoHack
 
             // TODO: Add your initialization logic here
 
+           
 
             Win1 = new Applications.TestApp1(spriteBatch, Content);
 

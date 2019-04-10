@@ -23,7 +23,7 @@ namespace MonoHack.Engine.UI.Themes
         {
             baseTexture = content.Load<Texture2D>("UI/Images/Pixel");
 
-            font = content.Load<SpriteFont>("UI/Font/Main");
+            font = content.Load<SpriteFont>("UI/Font/Classic");
 
             borderSize = 2;
 
@@ -31,8 +31,8 @@ namespace MonoHack.Engine.UI.Themes
 
             disableColor = Color.DimGray;
             activeColor = new Color(192, 192, 192);
-            hoverColor = Color.Gray;
-            clickColor = Color.Black;
+            hoverColor = new Color(192, 192, 192);
+            clickColor = new Color(192, 192, 192);
             borderColor = Color.Black;
             textColor = Color.Black;
         }
