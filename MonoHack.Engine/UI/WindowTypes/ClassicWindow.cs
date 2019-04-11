@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.BitmapFonts;
 using MonoHack.Engine.UI;
 using MonoHack.Engine.UI.Controls;
 
@@ -83,9 +84,9 @@ namespace MonoHack.Engine.WindowTypes
             /// Title
             ///
             Title.SpriteBatch = spriteBatch;
-            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 7, WindowPanel.Bounds.Y + 3), new Point(0, 0));
+            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 7, WindowPanel.Bounds.Y + 4), new Point(0, 0));
             Title.Theme = new Engine.UI.Themes.ClassicTheme(_content, _spriteBatch);
-            Title.Font = Title.Theme.Font;
+            Title.Font = _content.Load<BitmapFont>("UI/Font/Classic/ClassicBold");
             Title.Theme.TextColor = Color.White;
             Title.Text = App.Text;
 
@@ -169,7 +170,7 @@ namespace MonoHack.Engine.WindowTypes
 
             WindowPanel.Bounds = new Rectangle(new Point(mouseState.X - dragHandle.X, mouseState.Y - dragHandle.Y), WindowPanel.Bounds.Size);
             BackPanel.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X - 2, WindowPanel.Bounds.Y - 2), new Point(WindowPanel.Bounds.Width + 4, WindowPanel.Bounds.Height + 4));
-            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 7, WindowPanel.Bounds.Y + 3), new Point(1, 1));
+            Title.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 7, WindowPanel.Bounds.Y + 4), new Point(0, 0));
             TitleBar.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + 2, WindowPanel.Bounds.Y + 2), new Point(WindowPanel.Bounds.Width - 4, 18));
             btnClose.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 19, WindowPanel.Bounds.Y + 5), new Point(13, 11));
             btnMax.Bounds = new Rectangle(new Point(WindowPanel.Bounds.X + WindowPanel.Bounds.Width - 37, WindowPanel.Bounds.Y + 5), new Point(13, 11));

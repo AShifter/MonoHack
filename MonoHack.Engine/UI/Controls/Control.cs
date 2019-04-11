@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.BitmapFonts;
 
 namespace MonoHack.Engine.UI
 {
@@ -12,7 +13,7 @@ namespace MonoHack.Engine.UI
         SpriteBatch _spriteBatch;
         Rectangle _bounds;
         String _text;
-        SpriteFont _font;
+        BitmapFont _font;
         Texture2D _image;
         Color _normalColor;
         Color _hoverColor;
@@ -29,7 +30,7 @@ namespace MonoHack.Engine.UI
         public abstract SpriteBatch SpriteBatch { get; set; }
         public abstract Rectangle Bounds { get; set; }
         public abstract String Text { get; set; }
-        public abstract SpriteFont Font { get; set; }
+        public abstract BitmapFont Font { get; set; }
         public abstract IUITheme Theme { get; set; }
         public abstract Texture2D Image { get; set; }
         public abstract Color Color { get; set; }

@@ -89,7 +89,7 @@ namespace MonoHack
             TextCursor = Content.Load<Texture2D>("UI/Images/Cursor/TextCursor");
             CurrentCursor = DefaultCursor;
             Pixel = Content.Load<Texture2D>("UI/Images/Pixel");
-            Font = Content.Load<SpriteFont>("UI/Font/Main");
+            Font = Content.Load<SpriteFont>("UI/Font/UbuntuMono/Main");
 
             // TODO: use this.Content to load your game content here
             FPSLabel = new Engine.UI.Controls.Label();

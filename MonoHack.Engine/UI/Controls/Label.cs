@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.BitmapFonts;
 
 namespace MonoHack.Engine.UI.Controls
 {
@@ -11,7 +13,7 @@ namespace MonoHack.Engine.UI.Controls
         public SpriteBatch spriteBatch;
         public Rectangle controlBounds;
         public String text;
-        public SpriteFont font;
+        public BitmapFont font;
         public IUITheme theme;
         public Texture2D image;
         public Color currentColor;
@@ -37,7 +39,7 @@ namespace MonoHack.Engine.UI.Controls
             set => text = value;
         }
 
-        public override SpriteFont Font
+        public override BitmapFont Font
         {
             get => font;
             set => font = value;
@@ -111,6 +113,7 @@ namespace MonoHack.Engine.UI.Controls
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
                 // Draw Text
                 spriteBatch.DrawString(font, text, new Vector2(controlBounds.X, controlBounds.Y), theme.TextColor * opacity);
+               
                 spriteBatch.End();
             }
         }

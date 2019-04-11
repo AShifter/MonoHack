@@ -10,50 +10,78 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\1.1.0\tools\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
-#begin UI/Font/Classic.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
+#begin UI/Font/Classic/ClassicBold.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:UI/Font/Classic/ClassicBold.fnt
+
+#begin UI/Font/Classic/ClassicBold_0.tga
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:UI/Font/Classic.spritefont
+/build:UI/Font/Classic/ClassicBold_0.tga
 
-#begin UI/Font/H1.spritefont
+#begin UI/Font/Classic/ClassicReg.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:UI/Font/Classic/ClassicReg.fnt
+
+#begin UI/Font/Classic/ClassicReg_0.tga
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Font/Classic/ClassicReg_0.tga
+
+#begin UI/Font/UbuntuMono/H1.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:UI/Font/H1.spritefont
+/build:UI/Font/UbuntuMono/H1.spritefont
 
-#begin UI/Font/H2.spritefont
+#begin UI/Font/UbuntuMono/H2.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:UI/Font/H2.spritefont
+/build:UI/Font/UbuntuMono/H2.spritefont
 
-#begin UI/Font/H3.spritefont
+#begin UI/Font/UbuntuMono/H3.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:UI/Font/H3.spritefont
+/build:UI/Font/UbuntuMono/H3.spritefont
 
-#begin UI/Font/H4.spritefont
+#begin UI/Font/UbuntuMono/H4.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:UI/Font/H4.spritefont
+/build:UI/Font/UbuntuMono/H4.spritefont
 
-#begin UI/Font/Main.spritefont
+#begin UI/Font/UbuntuMono/Main.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:UI/Font/Main.spritefont
+/build:UI/Font/UbuntuMono/Main.spritefont
 
 #begin UI/Images/ClassicTheme/ClassicClose.png
 /importer:TextureImporter

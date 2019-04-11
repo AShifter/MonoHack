@@ -3,13 +3,14 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoHack.Engine.UI.Styles;
+using MonoGame.Extended.BitmapFonts;
 
 namespace MonoHack.Engine.UI.Themes
 {
     public class DefaultTheme : IUITheme
     {
         Texture2D baseTexture;
-        SpriteFont font;
+        BitmapFont font;
         int borderSize;
         ControlStyles controlStyle;
         Color disableColor;
@@ -23,7 +24,7 @@ namespace MonoHack.Engine.UI.Themes
         {
             baseTexture = content.Load<Texture2D>("UI/Images/Pixel");
 
-            font = content.Load<SpriteFont>("UI/Font/Main");
+            font = content.Load<BitmapFont>("UI/Font/Classic/ClassicReg");
 
             borderSize = 2;
 
@@ -42,7 +43,7 @@ namespace MonoHack.Engine.UI.Themes
             get => baseTexture;
         }
 
-        public SpriteFont Font
+        public BitmapFont Font
         {
             get => font;
             set => font = value;

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.BitmapFonts;
 using MonoHack.Engine.UI;
 using MonoHack.Engine.UI.Controls;
 using MonoHack.Engine.UI.Styles;
@@ -75,7 +76,7 @@ namespace MonoHack.TitleScreen
             // Preliminary setup
             monoHackEngineLabel.Text = "MonoHack Engine";
             monoHackEngineLabel.Theme = mainTheme;
-            monoHackEngineLabel.Font = content.Load<SpriteFont>("UI/Font/H2");
+            monoHackEngineLabel.Font = content.Load<BitmapFont>("UI/Font/Classic/ClassicBold");
 
             ///
             /// monohackIcon
@@ -83,7 +84,7 @@ namespace MonoHack.TitleScreen
             monohackIcon.SpriteBatch = spriteBatch;
             monohackIcon.Image = content.Load<Texture2D>("UI/Images/MonoHack_512x");
             monohackIcon.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - monohackIcon.Image.Bounds.Width / 2,
-                graphicsDevice.Viewport.Height / 2 - monohackIcon.Image.Bounds.Width / 2 - (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Y + 20),
+                graphicsDevice.Viewport.Height / 2 - monohackIcon.Image.Bounds.Width / 2 - (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Height + 20),
                 new Point(monohackIcon.Image.Bounds.Width, monohackIcon.Image.Bounds.Height));
             monohackIcon.Theme = mainTheme;
             monohackIcon.Opacity = 0f;
@@ -93,8 +94,8 @@ namespace MonoHack.TitleScreen
             /// monoHackEngineLabel
             ///
             monoHackEngineLabel.SpriteBatch = spriteBatch;
-            monoHackEngineLabel.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).X / 2,
-                graphicsDevice.Viewport.Height / 2 + (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Y + (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Y + 20), new Point(0, 0));
+            monoHackEngineLabel.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Width / 2,
+                graphicsDevice.Viewport.Height / 2 + (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Height + (int)monoHackEngineLabel.Font.MeasureString(monoHackEngineLabel.Text).Height + 20), new Point(0, 0));
             monoHackEngineLabel.Theme.BorderSize = 0;
             monoHackEngineLabel.Theme.TextColor = Color.White;
             monoHackEngineLabel.Opacity = 0f;
@@ -106,11 +107,11 @@ namespace MonoHack.TitleScreen
             aGameBy.Text = "a game by";
             aGameBy.Theme = mainTheme;
             aGameBy.Theme.BorderSize = 0;
-            aGameBy.Font = content.Load<SpriteFont>("UI/Font/H4");
+            aGameBy.Font = content.Load<BitmapFont>("UI/Font/Classic/ClassicBold");
             aGameBy.Theme.TextColor = Color.White;
             aGameBy.Opacity = 0f;
-            aGameBy.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)aGameBy.Font.MeasureString(aGameBy.Text).X / 2,
-                graphicsDevice.Viewport.Height / 2 - (int)aGameBy.Font.MeasureString(aGameBy.Text).Y - 20), new Point(0, 0));
+            aGameBy.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)aGameBy.Font.MeasureString(aGameBy.Text).Width / 2,
+                graphicsDevice.Viewport.Height / 2 - (int)aGameBy.Font.MeasureString(aGameBy.Text).Height - 20), new Point(0, 0));
 
             ///
             /// ashifter
@@ -119,11 +120,11 @@ namespace MonoHack.TitleScreen
             ashifter.Text = "ashifter";
             ashifter.Theme = mainTheme;
             ashifter.Theme.BorderSize = 0;
-            ashifter.Font = content.Load<SpriteFont>("UI/Font/H2");
+            ashifter.Font = content.Load<BitmapFont>("UI/Font/Classic/ClassicBold");
             ashifter.Theme.TextColor = Color.White;
             ashifter.Opacity = 0f;
-            ashifter.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)ashifter.Font.MeasureString(ashifter.Text).X / 2,
-                graphicsDevice.Viewport.Height / 2 - (int)ashifter.Font.MeasureString(ashifter.Text).Y / 2 + 20), new Point(0, 0));
+            ashifter.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)ashifter.Font.MeasureString(ashifter.Text).Width / 2,
+                graphicsDevice.Viewport.Height / 2 - (int)ashifter.Font.MeasureString(ashifter.Text).Height / 2 + 20), new Point(0, 0));
 
             ///
             /// andCommunity
@@ -132,11 +133,11 @@ namespace MonoHack.TitleScreen
             andCommunity.Text = "and the community";
             andCommunity.Theme = mainTheme;
             andCommunity.Theme.BorderSize = 0;
-            andCommunity.Font = content.Load<SpriteFont>("UI/Font/H4");
+            andCommunity.Font = content.Load<BitmapFont>("UI/Font/Classic/ClassicBold");
             andCommunity.Theme.TextColor = Color.White;
             andCommunity.Opacity = 0f;
-            andCommunity.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)andCommunity.Font.MeasureString(andCommunity.Text).X / 2,
-                graphicsDevice.Viewport.Height / 2 + (int)andCommunity.Font.MeasureString(andCommunity.Text).Y + 25), new Point(0, 0));
+            andCommunity.Bounds = new Rectangle(new Point(graphicsDevice.Viewport.Width / 2 - (int)andCommunity.Font.MeasureString(andCommunity.Text).Width / 2,
+                graphicsDevice.Viewport.Height / 2 + (int)andCommunity.Font.MeasureString(andCommunity.Text).Height + 25), new Point(0, 0));
         }
 
         public void Update(GameTime gameTime)

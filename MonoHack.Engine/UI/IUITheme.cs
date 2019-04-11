@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.BitmapFonts;
 using MonoHack.Engine.UI.Styles;
 
 namespace MonoHack.Engine.UI
@@ -10,7 +11,7 @@ namespace MonoHack.Engine.UI
         Texture2D BaseTexture { get; }
 
         // SpriteFont Font - Font used for this theme.
-        SpriteFont Font { get; set; }
+        BitmapFont Font { get; set; }
 
         // int BorderSize - Thickness of the border found around UI elements.
         int BorderSize { get; set;  }
