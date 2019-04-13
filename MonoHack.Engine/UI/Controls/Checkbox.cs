@@ -249,7 +249,7 @@ namespace MonoHack.Engine.UI.Controls
                 // Draw Text
                 spriteBatch.DrawString(theme.Font, text, new Vector2(
                     (controlBounds.X + controlBounds.Width + 10),
-                    (controlBounds.Y + controlBounds.Height / 2) - controlBounds.Y / 2),
+                    (controlBounds.Y + controlBounds.Height / 2) - (int)Font.MeasureString(text).Height / 2),
                     theme.TextColor * opacity);
                 spriteBatch.End();
             }

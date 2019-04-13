@@ -15,7 +15,7 @@ namespace MonoHack.Applications
         ContentManager content;
 
         // Local Variables
-        Rectangle _bounds = new Rectangle(new Point(50, 50), new Point(400, 592));
+        Rectangle _bounds = new Rectangle(new Point(50, 50), new Point(281, 472));
         string _text;
         Texture2D _icon;
 
@@ -90,7 +90,7 @@ namespace MonoHack.Applications
             /// TestLabel
             ///
             TestLabel.SpriteBatch = spriteBatch;
-            TestLabel.Text = "Welcome to the MonoHack 0.1a Demo! Here's what I\nhave so far. Mess with controls down there and\ncheck your discord profile; Discord RPC is\nexperimental but should be working.\n\nNote: Try dragging this window around!\nContext buttons are not yet functional.";
+            TestLabel.Text = "Welcome to the MonoHack 0.1a Demo! Here's what I \nhave so far. Mess with controls down there and check \nyour discord profile; Discord RPC is experimental, but \nshould be working.\n\nNote: Try dragging this window around!\nContext buttons are not yet functional.";
             TestLabel.Theme = new Engine.UI.Themes.ClassicTheme(content, spriteBatch);
             TestLabel.Font = TestLabel.Theme.Font;
 
@@ -145,7 +145,7 @@ namespace MonoHack.Applications
             Cbx1.Bounds = new Rectangle(new Point(_bounds.Location.X + 8, _bounds.Location.Y + 130 + 26), new Point(16, 16));
             Btn1.Bounds = new Rectangle(new Point(_bounds.Location.X + 8, _bounds.Location.Y + 160 + 26), new Point(150, 25));
             Lbl2.Bounds = new Rectangle(new Point(_bounds.Location.X + 168, _bounds.Location.Y + 163 + 26), new Point(1, 1));
-            Pbx1.Bounds = new Rectangle(new Point(_bounds.Location.X + 8, _bounds.Location.Y + 200 + 26), new Point(384, 384));
+            Pbx1.Bounds = new Rectangle(new Point(_bounds.Location.X + 9, _bounds.Location.Y + 200 + 26), new Point(263, 263));
 
             Cbx1.Update(gameTime);
             Btn1.Update(gameTime);

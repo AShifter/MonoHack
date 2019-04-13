@@ -230,8 +230,8 @@ namespace MonoHack.Engine.UI.Controls
                 if (text != null)
                 {
                     spriteBatch.DrawString(theme.Font, text, new Vector2(
-                        (controlBounds.X + controlBounds.Width / 2) - 2 / 2,
-                        (controlBounds.Y + controlBounds.Height / 2) - controlBounds.Y / 2),
+                        (controlBounds.X + (int)Theme.Font.MeasureString(text).Width / 2),
+                        (controlBounds.Y + (int)Theme.Font.MeasureString(text).Height / 2)),
                         theme.TextColor * opacity);
                 }
                 spriteBatch.End();

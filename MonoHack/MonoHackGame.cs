@@ -23,6 +23,7 @@ namespace MonoHack
         Vector2 MousePosition;
         SpriteFont Font;
         IMonoHackApp Win1;
+        IMonoHackApp Win2;
 
         Engine.UI.Control FPSLabel;
         double fps;
@@ -59,12 +60,16 @@ namespace MonoHack
            
 
             Win1 = new Applications.TestApp1(spriteBatch, Content);
+            Win2 = new Applications.TestApp2(spriteBatch, Content);
 
             ClassicWindow Test1 = new ClassicWindow(spriteBatch, Content, GraphicsDevice, Win1);
+            ClassicWindow Test2 = new ClassicWindow(spriteBatch, Content, GraphicsDevice, Win2);
 
-            Components.Add(Win1);
+            Components.Add(Test2);
+            Components.Add(Win2);
 
             Components.Add(Test1);
+            Components.Add(Win1);
 
             title = new MonoHackTitleScreen(spriteBatch, Content, GraphicsDevice);
 
